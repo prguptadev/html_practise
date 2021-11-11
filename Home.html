@@ -165,9 +165,9 @@
               <td>पुस्तक संख्या</td>
               <td><label>17121983 </label></td>
               <td>क्रम संख्या</td>
-              <td><label>17121983(75)/9/00140 </label></td>
+              <td><label id="r9"></label></td>
               <td>विक्रय/ नीलाम का दिनांक</td>
-              <td><label>10/11/2021 </label></td>
+              <td><label id="dddate"></label></td>
             </tr>
             <tr>
               <td>मंडी</td>
@@ -250,13 +250,14 @@
                     <label> suganda</label>
                   </td>
                   <td valign="top">
-                    <label> 255.200 कुंतल</label>
+                    <label id="weighty"></label>
+                    <label>कुंतल</label>
                   </td>
                   <td valign="top">
-                    <label> 2360</label>
+                    <label id="price"></label>
                   </td>
                   <td valign="top">
-                    <label> 602272</label>
+                    <label> <p id="date"></p></label>
                   </td>
                   <td align="left" class="p-4" valign="top">
                     <label>
@@ -273,12 +274,13 @@
                     </label>
                   </td>
                   <td colspan="1" valign="top">
-                    <label> 602272</label>
+                    <label> <p id="gatepass"></p></label>
                   </td>
                   <td colspan="1" valign="top">
-                    <label style="overflow-wrap: break-word; max-width: 300px">
-                      17121983(75)/6/00292,17121983(75)/6/00295,17121983(75)/6/00296</label
-                    >
+                    <label
+                      style="overflow-wrap: break-word; max-width: 300px"
+                      id="r9no"
+                    ></label>
                   </td>
                 </tr>
               </tbody>
@@ -322,6 +324,85 @@
     <!--Data Table-->
     <!-- Common Script   -->
     <script src="./Home_files/main.js.download"></script>
+
+    <script>
+      function getParams() {
+        var idx = document.URL.indexOf("?");
+        var params = new Array();
+        if (idx != -1) {
+          var pairs = document.URL.substring(
+            idx + 1,
+            document.URL.length
+          ).split("&");
+          for (var i = 0; i < pairs.length; i++) {
+            nameVal = pairs[i].split("=");
+            params[nameVal[0]] = nameVal[1];
+          }
+        }
+        return params;
+      }
+      params = getParams();
+      date = unescape(params["date"]);
+      time = unescape(params["time"]);
+      firm = unescape(params["firm"]);
+      gatepass = unescape(params["gatepass"]);
+      r9 = unescape(params["9r"]);
+      r9no = unescape(params["9rno"]);
+      weight = unescape(params["weight"]);
+      price = unescape(params["price"]);
+      bag = unescape(params["bag"]);
+      truck = unescape(params["truck"]);
+      distance = unescape(params["distance"]);
+
+      // document.getElementById("yydate").innerHTML = date;
+
+      // document.getElementById("time").innerHTML = time;
+      // document.getElementById("firm").innerHTML = firm;
+      // document.getElementById("gatepass").innerHTML = gatepass;
+      // document.getElementById("r9").innerHTML = r9;
+      // document.getElementById("r9no").innerHTML = r9no;
+      // document.getElementById("weighty").innerHTML = weighty;
+
+      // document.getElementById("price").innerHTML = price;
+      // document.getElementById("bag").innerHTML = bag;
+      // document.getElementById("truck").innerHTML = truck;
+      // document.getElementById("distance").innerHTML = distance;
+
+      document.write("date = " + date + "<br>");
+
+      document.write("time = " + time + "<br>");
+      document.write("firm = " + firm + "<br>");
+
+      document.write("gatepass = " + gatepass + "<br>");
+      document.write("r9 = " + r9 + "<br>");
+      document.write("r9no = " + r9no + "<br>");
+
+      document.write("weight = " + weight + "<br>");
+      document.write("price = " + price + "<br>");
+      document.write("bag = " + bag + "<br>");
+
+      document.write("truck = " + truck + "<br>");
+      document.write("distance = " + distance + "<br>");
+
+      //document.getElementById("yydate").innerHTML = date;
+
+      const changeDateFormatTo = (datess) => {
+        const [yy, mm, dd] = datess.split(/-/g);
+        document.getElementById("dddate").innerHTML = `${dd}/${mm}/${yy}`;
+        //   //return `${dd}/${mm}/${yy}`;
+      };
+
+      const formattedDate = changeDateFormatTo(date);
+      console.log(`Formatted date is: ${formattedDate}`);
+
+      document.getElementById("r9").innerHTML = r9;
+      document.getElementById("weighty").innerHTML = weight;
+      document.getElementById("price").innerHTML = price;
+
+      ////
+      document.getElementById("r9no").innerHTML = r9no;
+    </script>
+
     <script>
       function PrintDiv() {
         var contents = document.getElementById("content").innerHTML;

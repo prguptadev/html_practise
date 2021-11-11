@@ -93,12 +93,13 @@
     } */ 
   </style>
   <body>
-    <form id="regForm" action="./Home.html">
+    <form id="regForm" action="./Home.html" method="get">
       <h1>Details:</h1>
 
       <!-- One "tab" for each step in the form: -->
       <div class="tab">
        
+        <div>
         <label for="Date">Date :</label>
         <p>
           <input
@@ -107,6 +108,7 @@
             name="date"
             type="date"
           />
+        </div>
         </p>
         Time :
         <p>
@@ -166,7 +168,7 @@
           <input
             placeholder="First name..."
             oninput="this.className = ''"
-            name="Weight"
+            name="weight"
           />
         </p>
         Price:
@@ -209,8 +211,8 @@
             Previous
           </button> -->
           <!-- <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button> -->
-          <button type="submit" >9R  </button>
-          <button type="submit" formaction="./gate.html" method="POST" >GATEPASS</button>
+          <button type="submit"  formtarget="_blank" >   9R  </button>
+          <button type="submit" formaction="./gate.html"  formtarget="_blank" method="get">GATEPASS</button>
 
           </div>
       
@@ -224,8 +226,29 @@
     </form>
 
     <script>
-      var fd = new FormData();
-      console.log(fd);
+      var truck = $('#truck').val();
+      var price = $('#price').val();
+      localStorage.setItem("truck", truck);
+      localStorage.setItem("price", price);
+      var fd = document.getElementById("regForm").value;
+      console.log("34444---- ", fd);
+    
+        var fd1 = document.getElementsByName("9r").value;
+        var fd2 = document.getElementsByName("date").value;
+        var fd3 = document.getElementsByName("time").value;
+        var fd4 = document.getElementsByName("firm").value;
+        var fd5 = document.getElementsByName("truck").value;
+        var fd6 = document.getElementsByName("price").value;
+        var fd7 = document.getElementsByName("bag").value;
+        console.log("34444----1 ", fd1);
+        console.log("34444---2- ", fd2);
+        console.log("34444--3-- ", fd3);
+        console.log("34444-4--- ", fd4);
+        console.log("344445---- ", fd5);
+        console.log("344464---- ", fd6);
+        console.log("344744---- ", fd7);
+       
+
       // var currentTab = 0; // Current tab is set to be the first tab (0)
       // showTab(currentTab); // Display the current tab
 

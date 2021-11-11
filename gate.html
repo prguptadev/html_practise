@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
     <style type="text/css">
       .swal-icon--error {
         border-color: #f27474;
@@ -841,7 +842,6 @@
 
     <center>
       <a
-        href="http://emandi.up.gov.in/Receipt/print_gatepass#"
         id="printPageButton"
         style="font-size: 12px; margin-top: 15px; margin-bottom: 5px"
         onclick="window.print()"
@@ -884,26 +884,26 @@
               <td>पुस्तक संख्या</td>
               <td><label>17121983 </label></td>
               <td>गेटपास संख्या</td>
-              <td><label>17121983(75)/GP/00086 </label></td>
+              <td><label id="gatepasses"></label></td>
               <td>आवेदन संख्या (यूनिक कोड)</td>
               <td><label>52358268 </label></td>
             </tr>
             <tr>
               <td>जारी करने का दिनांक</td>
-              <td><label>2021-11-11 </label></td>
+              <td><label id="yydate"></label></td>
 
               <td>जारी करने का समय</td>
-              <td><label>19:12:12 </label></td>
+              <td><label id="timess"> </label></td>
 
               <td>सलंग्न प्रपत्र-9 की संख्या</td>
-              <td><label>17121983(75)/9/00141 </label></td>
+              <td><label id="r9"> </label></td>
             </tr>
             <tr>
               <td>दिनांक</td>
-              <td><label>11/11/2021 </label></td>
+              <td><label id="dddate"> </label></td>
 
               <td>गंतव्य की दूरी (KM)</td>
-              <td colspan="1"><label>250 </label></td>
+              <td colspan="1"><label id="distancess"> </label></td>
               <td>सीमांत गृह केंद्र का नाम</td>
               <td colspan="1"><label> </label></td>
             </tr>
@@ -940,7 +940,7 @@
                     >
                   </td>
                   <td rowspan="2">
-                    <label>ट्रक</label><br /><label>UP86T5657</label>
+                    <label>ट्रक</label><br /><label id="truckss"></label>
                   </td>
                   <th style="">नाम</th>
                   <th style="">किस्म</th>
@@ -948,7 +948,7 @@
                   <th style="">वजन</th>
                   <th style="">माप</th>
                   <td rowspan="2">
-                    <label>श्री कृष्णा इंटरनेशनल दिल्ली </label>
+                    <label id="firmyy"></label>
                   </td>
                   <td rowspan="2">
                     <label></label>
@@ -959,8 +959,8 @@
                     <label>धान</label>
                   </td>
                   <td><label>suganda</label></td>
-                  <td><label>275</label></td>
-                  <td><label>151.050</label></td>
+                  <td><label id="bagss"></label></td>
+                  <td><label id="weighty"></label></td>
                   <td><label>कुंतल</label></td>
                 </tr>
               </tbody>
@@ -1027,6 +1027,95 @@
     <!--Data Table-->
     <!-- Common Script   -->
     <script src="./gate_files/main.js.download"></script>
+
+    <script>
+      function getParams() {
+        var idx = document.URL.indexOf("?");
+        var params = new Array();
+        if (idx != -1) {
+          var pairs = document.URL.substring(
+            idx + 1,
+            document.URL.length
+          ).split("&");
+          for (var i = 0; i < pairs.length; i++) {
+            nameVal = pairs[i].split("=");
+            params[nameVal[0]] = nameVal[1];
+          }
+        }
+        return params;
+      }
+      params = getParams();
+      date = unescape(params["date"]);
+      time = unescape(params["time"]);
+      firm = unescape(params["firm"]);
+      gatepass = unescape(params["gatepass"]);
+      r9 = unescape(params["9r"]);
+      r9no = unescape(params["9rno"]);
+      weight = unescape(params["weight"]);
+      price = unescape(params["price"]);
+      bag = unescape(params["bag"]);
+      truck = unescape(params["truck"]);
+      distance = unescape(params["distance"]);
+
+      // document.getElementById("yydate").innerHTML = date;
+
+      // document.getElementById("time").innerHTML = time;
+      document.getElementById("firmyy").innerHTML = firm;
+      // document.getElementById("gatepass").innerHTML = gatepass;
+      // document.getElementById("r9").innerHTML = r9;
+      // document.getElementById("r9no").innerHTML = r9no;
+      // document.getElementById("weighty").innerHTML = weighty;
+
+      // document.getElementById("price").innerHTML = price;
+      // document.getElementById("bag").innerHTML = bag;
+      // document.getElementById("truck").innerHTML = truck;
+      // document.getElementById("distance").innerHTML = distance;
+
+      document.write("date = " + date + "<br>");
+
+      document.write("time = " + time + "<br>");
+      document.write("firm = " + firm + "<br>");
+
+      document.write("gatepass = " + gatepass + "<br>");
+      document.write("r9 = " + r9 + "<br>");
+      document.write("r9no = " + r9no + "<br>");
+
+      document.write("weight = " + weight + "<br>");
+      document.write("price = " + price + "<br>");
+      document.write("bag = " + bag + "<br>");
+
+      document.write("truck = " + truck + "<br>");
+      document.write("distance = " + distance + "<br>");
+
+      document.getElementById("yydate").innerHTML = date;
+      document.getElementById("gatepasses").innerHTML = gatepass;
+      document.getElementById("bagss").innerHTML = bag;
+      document.getElementById("distancess").innerHTML = distance;
+      document.getElementById("timess").innerHTML = time;
+      document.getElementById("truckss").innerHTML = truck;
+
+      //document.getElementById("yydate").innerHTML = date;
+      //-----------------------------------------------------------------------------------------------------
+      const changeDateFormatTo = (datess) => {
+        const [yy, mm, dd] = datess.split(/-/g);
+        document.getElementById("dddate").innerHTML = `${dd}/${mm}/${yy}`;
+        //   //return `${dd}/${mm}/${yy}`;
+      };
+
+      const formattedDate = changeDateFormatTo(date);
+      console.log(`Formatted date is: ${firm}`);
+      console.log(`firm date is: ${firmyy}`);
+      //console.log(`formss date is: ${formattedDate}`);
+
+      document.getElementById("r9").innerHTML = r9;
+      document.getElementById("weighty").innerHTML = weight;
+      document.getElementById("price").innerHTML = price;
+
+      document.getElementById("r9no").innerHTML = r9no;
+      document.getElementById("gatepass").innerHTML = gatepass;
+      //document.getElementById("yydate").innerHTML = date;
+    </script>
+
     <script>
       function PrintDiv() {
         var contents = document.getElementById("content").innerHTML;
