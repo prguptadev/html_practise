@@ -96,9 +96,6 @@
     <form id="regForm" action="./Home.html">
       <h1>Details:</h1>
 
-
-     
-
       <!-- One "tab" for each step in the form: -->
       <div class="tab">
        
@@ -107,7 +104,7 @@
           <input
             placeholder="First name..."
             oninput="this.className = ''"
-            name="fname"
+            name="date"
             type="date"
           />
         </p>
@@ -116,7 +113,7 @@
           <input
             placeholder="First name..."
             oninput="this.className = ''"
-            name="fname"
+            name="time"
           />
         </p>
         Firm Name.:
@@ -124,7 +121,7 @@
           <input
             placeholder="Last name..."
             oninput="this.className = ''"
-            name="lname"
+            name="firm"
             list="browsers"
           />
         </p>
@@ -145,7 +142,7 @@
           <input
             placeholder="First name..."
             oninput="this.className = ''"
-            name="fname"
+            name="gatepass"
           />
         </p>
         9R:
@@ -153,7 +150,7 @@
           <input
             placeholder="Last name..."
             oninput="this.className = ''"
-            name="lname"
+            name="9r"
           />
         </p>
         9R No.:
@@ -161,7 +158,7 @@
           <input
             placeholder="Last name..."
             oninput="this.className = ''"
-            name="lname"
+            name="9rno"
           />
         </p>
         Weight :
@@ -169,7 +166,7 @@
           <input
             placeholder="First name..."
             oninput="this.className = ''"
-            name="fname"
+            name="Weight"
           />
         </p>
         Price:
@@ -177,7 +174,7 @@
           <input
             placeholder="Last name..."
             oninput="this.className = ''"
-            name="lname"
+            name="price"
           />
         </p>
         No of Bag :
@@ -185,7 +182,7 @@
           <input
             placeholder="First name..."
             oninput="this.className = ''"
-            name="fname"
+            name="bag"
           />
         </p>
         Truck No:
@@ -193,7 +190,7 @@
           <input
             placeholder="Last name..."
             oninput="this.className = ''"
-            name="lname"
+            name="truck"
           />
         </p>
         Distance :
@@ -201,7 +198,7 @@
           <input
             placeholder="First name..."
             oninput="this.className = ''"
-            name="fname"
+            name="distance"
           />
         </p>
       </div>
@@ -213,7 +210,7 @@
           </button> -->
           <!-- <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button> -->
           <button type="button" id="9R" onclick="document.getElementById('regForm').submit()">9R  </button>
-          <button type="button" id="GATE-PASS" onclick="document.getElementById('regForm').submit()">GATEPASS</button>
+          <button type="button" formaction="./gate.html" id="GATE-PASS" onclick="document.getElementById('regForm').submit()">GATEPASS</button>
 
           </div>
       
