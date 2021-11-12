@@ -886,7 +886,7 @@
               <td>गेटपास संख्या</td>
               <td><label id="gatepasses"></label></td>
               <td>आवेदन संख्या (यूनिक कोड)</td>
-              <td><label>52358268 </label></td>
+              <td><label id="gateNo"></label></td>
             </tr>
             <tr>
               <td>जारी करने का दिनांक</td>
@@ -970,14 +970,15 @@
                 <tr>
                   <td>गंतव्य स्थान पर पहुचने का अनुमानित समय</td>
                   <td>
-                    <input
+                    <label
                       class="form-control fixed-input"
-                      value="2021-11-11 19:12:12"
                       readonly=""
-                      id=""
+                      id="datatime"
                       name="destination_time"
-                    />(अनुमानित समय - <span id="avg_time">8.33</span> घंटे)(औसत
-                    गति - <span id="avg_speed">30</span> कि.मी / घंटा)
+                    ></label
+                    >label(अनुमानित समय -
+                    <span id="avg_time">8.33</span> घंटे)(औसत गति -
+                    <span id="avg_speed">30</span> कि.मी / घंटा)
                   </td>
                 </tr>
               </tbody>
@@ -1057,10 +1058,38 @@
       truck = unescape(params["truck"]);
       distance = unescape(params["distance"]);
 
+      if (firm === "Shri+Krishna+International+Delhi")
+        document.getElementById("firmyy").innerHTML =
+          "श्री कृष्णा इंटरनेशनल दिल्ली";
+      if (firm === "New+Light+Oversead+dhora+tanda+bareilly")
+        document.getElementById("firmyy").innerHTML =
+          "नई लाइट ओवरसीज दौरा टांडा बरैली";
+      if (firm === "BholeNath+Food+Limited+Delhi")
+        document.getElementById("firmyy").innerHTML =
+          "भोलेनाथ फूड्स लिमिटेड दिल्ली";
+      if (firm === "New+Light+Oversead+dhora+tanda")
+        document.getElementById("firmyy").innerHTML =
+          "नई लाइट ओवरसीज धोरा टांडा";
+      if (firm === "BholeNath+Foods+Kakoda+PaniPat")
+        document.getElementById("firmyy").innerHTML =
+          "भोले नाथ फूड्सलिमिटेड ककोड़ा पानीपतब";
+      if (firm === "Rehman+rice+industries+dhora+tanda+bareilly")
+        document.getElementById("firmyy").innerHTML =
+          "रेहमान राइस इंडस्ट्रीज दौरा टांडा बरैली";
+      if (firm === "BholeNath+Foods+Limited+Kakoda+PaniPat")
+        document.getElementById("firmyy").innerHTML =
+          "भोलेनाथ फूड्स लिमिटेड ककोड़ा पानीपत";
+      if (firm === "Bansal+Foods+India+shabana+Punjabb")
+        document.getElementById("firmyy").innerHTML =
+          "बंसल फूड्स इंडिया शबाना पंजाब";
+      if (firm === "Pranshu+FOods+Private+Limited+Manook+Punjab")
+        document.getElementById("firmyy").innerHTML =
+          "प्रांशु फूड्स प्राइवेट लिमिटेड मूनक पंजाब";
+
       // document.getElementById("yydate").innerHTML = date;
 
       // document.getElementById("time").innerHTML = time;
-      document.getElementById("firmyy").innerHTML = firm;
+
       // document.getElementById("gatepass").innerHTML = gatepass;
       // document.getElementById("r9").innerHTML = r9;
       // document.getElementById("r9no").innerHTML = r9no;
@@ -1093,6 +1122,10 @@
       document.getElementById("distancess").innerHTML = distance;
       document.getElementById("timess").innerHTML = time;
       document.getElementById("truckss").innerHTML = truck;
+      document.getElementById("datatime").innerHTML = date + " " + time;
+      document.getElementById("gateNo").innerHTML = Math.floor(
+        10000000 + Math.random() * 90000000
+      );
 
       //document.getElementById("yydate").innerHTML = date;
       //-----------------------------------------------------------------------------------------------------
@@ -1104,7 +1137,6 @@
 
       const formattedDate = changeDateFormatTo(date);
       console.log(`Formatted date is: ${firm}`);
-      console.log(`firm date is: ${firmyy}`);
       //console.log(`formss date is: ${formattedDate}`);
 
       document.getElementById("r9").innerHTML = r9;

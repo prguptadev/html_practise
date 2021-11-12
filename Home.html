@@ -198,7 +198,7 @@
               <td><label></label></td>
               <td>क्रेता फर्म का नाम व जिला</td>
               <td colspan="1">
-                <label>नई लाइट ओवरसीज दौरा टांडा बरैली </label>
+                <label id="r9firm"></label>
               </td>
             </tr>
           </tbody>
@@ -257,7 +257,7 @@
                     <label id="price"></label>
                   </td>
                   <td valign="top">
-                    <label> <p id="date"></p></label>
+                    <label id="totally"></label>
                   </td>
                   <td align="left" class="p-4" valign="top">
                     <label>
@@ -274,7 +274,7 @@
                     </label>
                   </td>
                   <td colspan="1" valign="top">
-                    <label> <p id="gatepass"></p></label>
+                    <label id="totallycopy"></label>
                   </td>
                   <td colspan="1" valign="top">
                     <label
@@ -398,9 +398,41 @@
       document.getElementById("r9").innerHTML = r9;
       document.getElementById("weighty").innerHTML = weight;
       document.getElementById("price").innerHTML = price;
+      document.getElementById("totally").innerHTML =
+        Math.round((price * weight + Number.EPSILON) * 100) / 100;
+      document.getElementById("totallycopy").innerHTML =
+        Math.round((price * weight + Number.EPSILON) * 100) / 100;
 
       ////
       document.getElementById("r9no").innerHTML = r9no;
+
+      if (firm === "Shri+Krishna+International+Delhi")
+        document.getElementById("r9firm").innerHTML =
+          "श्री कृष्णा इंटरनेशनल दिल्ली";
+      if (firm === "New+Light+Oversead+dhora+tanda+bareilly")
+        document.getElementById("r9firm").innerHTML =
+          "नई लाइट ओवरसीज दौरा टांडा बरैली";
+      if (firm === "BholeNath+Food+Limited+Delhi")
+        document.getElementById("r9firm").innerHTML =
+          "भोलेनाथ फूड्स लिमिटेड दिल्ली";
+      if (firm === "New+Light+Oversead+dhora+tanda")
+        document.getElementById("r9firm").innerHTML =
+          "नई लाइट ओवरसीज धोरा टांडा";
+      if (firm === "BholeNath+Foods+Kakoda+PaniPat")
+        document.getElementById("r9firm").innerHTML =
+          "भोले नाथ फूड्सलिमिटेड ककोड़ा पानीपतब";
+      if (firm === "Rehman+rice+industries+dhora+tanda+bareilly")
+        document.getElementById("r9firm").innerHTML =
+          "रेहमान राइस इंडस्ट्रीज दौरा टांडा बरैली";
+      if (firm === "BholeNath+Foods+Limited+Kakoda+PaniPat")
+        document.getElementById("r9firm").innerHTML =
+          "भोलेनाथ फूड्स लिमिटेड ककोड़ा पानीपत";
+      if (firm === "Bansal+Foods+India+shabana+Punjabb")
+        document.getElementById("r9firm").innerHTML =
+          "बंसल फूड्स इंडिया शबाना पंजाब";
+      if (firm === "Pranshu+FOods+Private+Limited+Manook+Punjab")
+        document.getElementById("r9firm").innerHTML =
+          "प्रांशु फूड्स प्राइवेट लिमिटेड मूनक पंजाब";
     </script>
 
     <script>
