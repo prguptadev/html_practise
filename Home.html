@@ -368,21 +368,21 @@
       // document.getElementById("truck").innerHTML = truck;
       // document.getElementById("distance").innerHTML = distance;
 
-      document.write("date = " + date + "<br>");
+      // document.write("date = " + date + "<br>");
 
-      document.write("time = " + time + "<br>");
-      document.write("firm = " + firm + "<br>");
+      // document.write("time = " + time + "<br>");
+      // document.write("firm = " + firm + "<br>");
 
-      document.write("gatepass = " + gatepass + "<br>");
-      document.write("r9 = " + r9 + "<br>");
-      document.write("r9no = " + r9no + "<br>");
+      // document.write("gatepass = " + gatepass + "<br>");
+      // document.write("r9 = " + r9 + "<br>");
+      // document.write("r9no = " + r9no + "<br>");
 
-      document.write("weight = " + weight + "<br>");
-      document.write("price = " + price + "<br>");
-      document.write("bag = " + bag + "<br>");
+      // document.write("weight = " + weight + "<br>");
+      // document.write("price = " + price + "<br>");
+      // document.write("bag = " + bag + "<br>");
 
-      document.write("truck = " + truck + "<br>");
-      document.write("distance = " + distance + "<br>");
+      // document.write("truck = " + truck + "<br>");
+      // document.write("distance = " + distance + "<br>");
 
       //document.getElementById("yydate").innerHTML = date;
 
@@ -433,34 +433,6 @@
       if (firm === "Pranshu+FOods+Private+Limited+Manook+Punjab")
         document.getElementById("r9firm").innerHTML =
           "प्रांशु फूड्स प्राइवेट लिमिटेड मूनक पंजाब";
-    </script>
-
-    <script>
-      function PrintDiv() {
-        var contents = document.getElementById("content").innerHTML;
-        var frame1 = document.createElement("iframe");
-        frame1.name = "frame1";
-        frame1.style.position = "absolute";
-        frame1.style.top = "-1000000px";
-        document.body.appendChild(frame1);
-        var frameDoc = frame1.contentWindow
-          ? frame1.contentWindow
-          : frame1.contentDocument.document
-          ? frame1.contentDocument.document
-          : frame1.contentDocument;
-        frameDoc.document.open();
-        frameDoc.document.write("<html><head><title>DIV Contents</title>");
-        frameDoc.document.write("</head><body>");
-        frameDoc.document.write(contents);
-        frameDoc.document.write("</body></html>");
-        frameDoc.document.close();
-        setTimeout(function () {
-          window.frames["frame1"].focus();
-          window.frames["frame1"].print();
-          document.body.removeChild(frame1);
-        }, 500);
-        return false;
-      }
     </script>
 
     <script src="./Home_files/jquery.js.download"></script>

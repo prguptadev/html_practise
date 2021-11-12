@@ -1102,21 +1102,21 @@
       // document.getElementById("truck").innerHTML = truck;
       // document.getElementById("distance").innerHTML = distance;
 
-      document.write("date = " + date + "<br>");
+      // document.write("date = " + date + "<br>");
 
-      document.write("time = " + time + "<br>");
-      document.write("firm = " + firm + "<br>");
+      // document.write("time = " + time + "<br>");
+      // document.write("firm = " + firm + "<br>");
 
-      document.write("gatepass = " + gatepass + "<br>");
-      document.write("r9 = " + r9 + "<br>");
-      document.write("r9no = " + r9no + "<br>");
+      // document.write("gatepass = " + gatepass + "<br>");
+      // document.write("r9 = " + r9 + "<br>");
+      // document.write("r9no = " + r9no + "<br>");
 
-      document.write("weight = " + weight + "<br>");
-      document.write("price = " + price + "<br>");
-      document.write("bag = " + bag + "<br>");
+      // document.write("weight = " + weight + "<br>");
+      // document.write("price = " + price + "<br>");
+      // document.write("bag = " + bag + "<br>");
 
-      document.write("truck = " + truck + "<br>");
-      document.write("distance = " + distance + "<br>");
+      // document.write("truck = " + truck + "<br>");
+      // document.write("distance = " + distance + "<br>");
 
       document.getElementById("yydate").innerHTML = date;
       document.getElementById("gatepasses").innerHTML = gatepass;
@@ -1148,100 +1148,6 @@
       document.getElementById("r9no").innerHTML = r9no;
       document.getElementById("gatepass").innerHTML = gatepass;
       //document.getElementById("yydate").innerHTML = date;
-    </script>
-
-    <script>
-      function PrintDiv() {
-        var contents = document.getElementById("content").innerHTML;
-        var frame1 = document.createElement("iframe");
-        frame1.name = "frame1";
-        frame1.style.position = "absolute";
-        frame1.style.top = "-1000000px";
-        document.body.appendChild(frame1);
-        var frameDoc = frame1.contentWindow
-          ? frame1.contentWindow
-          : frame1.contentDocument.document
-          ? frame1.contentDocument.document
-          : frame1.contentDocument;
-        frameDoc.document.open();
-        frameDoc.document.write("<html><head><title>DIV Contents</title>");
-        frameDoc.document.write("</head><body>");
-        frameDoc.document.write(contents);
-        frameDoc.document.write("</body></html>");
-        frameDoc.document.close();
-        setTimeout(function () {
-          window.frames["frame1"].focus();
-          window.frames["frame1"].print();
-          document.body.removeChild(frame1);
-        }, 500);
-        return false;
-      }
-      function ActionOnGP(status) {
-        var msg =
-          status == 1
-            ? "क्या आप अनुमति देना सुनिश्चित करते हैं"
-            : "क्या आप अस्वीकृति के लिए निश्चित हैं";
-        $("#loader").css("display", "block");
-        swal({
-          title: msg,
-          text: "",
-          icon: "warning",
-          buttons: {
-            cancel: "हाँ",
-            ok: {
-              text: "नहीं",
-              className: "sweet-warning",
-            },
-          },
-          closeOnEsc: false,
-          closeOnClickOutside: false,
-        }).then((cncl_form) => {
-          if (cncl_form) {
-            $("#loader").css("display", "none");
-            return false;
-          } else {
-            //$("#form1").submit();
-            //   console.log($('#form1').serialize());
-            $.ajax({
-              url: $("#form1").attr("action"),
-              method: "post",
-              data: {
-                status: status,
-                gpid: $("#gpid").val(),
-                remark: $("#accremark").val(),
-              },
-              success: function (data) {
-                console.log(data);
-                var iconclass = data[0].status == 0 ? "warning" : "success";
-                swal({
-                  title: data[0].msg,
-                  text: "",
-                  icon: iconclass,
-                  buttons: {
-                    cancel: "Ok",
-                    //ok: {
-                    //    //text: "नहीं",
-                    //    className: 'sweet-warning'
-                    //},
-                  },
-                  closeOnEsc: false,
-                  closeOnClickOutside: false,
-                }).then((cncl_form) => {
-                  if (cncl_form) {
-                    $("#loader").css("display", "none");
-                    return false;
-                  } else {
-                    $("#loader").css("display", "none");
-                    if (data[0].status > 0) {
-                      location.href = "/Receipt/print_gps/" + $("#gpid").val();
-                    }
-                  }
-                });
-              },
-            });
-          }
-        });
-      }
     </script>
 
     <script src="./gate_files/jquery.js.download"></script>
