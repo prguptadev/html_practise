@@ -93,12 +93,11 @@
     } */ 
   </style>
   <body>
-    <form id="regForm" action="./Home.html" method="get">
+    <form id="regForm" action="./Home.html"  method="get" required>
       <h1>Details:</h1>
 
       <!-- One "tab" for each step in the form: -->
       <div class="tab">
-       
         <div>
         <label for="Date">Date :</label>
         <p>
@@ -223,8 +222,8 @@
             Previous
           </button> -->
           <!-- <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button> -->
-          <button type="submit"  formtarget="_blank">   9R  </button>
-          <button type="submit" formaction="./gate.html"  formtarget="_blank" method="get">GATEPASS</button>
+          <button type="submit"  formtarget="_blank"  onsubmit="return validateForm()" required>   9R  </button>
+          <button type="submit" formaction="./gate.html"  formtarget="_blank"  onsubmit="return validateForm()"  required method="get">GATEPASS</button>
 
           </div>
       
@@ -237,10 +236,10 @@
       </div>
     </form>
 
-    <script>
-  
-       
+ 
 
+  <script>
+       
       // var currentTab = 0; // Current tab is set to be the first tab (0)
       // showTab(currentTab); // Display the current tab
 
@@ -282,6 +281,17 @@
       //   // Otherwise, display the correct tab:
       //   showTab(currentTab);
       // }
+
+      function validateForm_ok() {
+  var x = document.forms["regForm"]["date"].value;
+  if (x == "" || x == null) {
+    X.className += " invalid";
+            // and set the current valid status to false
+    valid = false;
+    //alert("Name must be filled out");
+    return valid;
+  }
+}
 
       function validateForm() {
         // This function deals with validation of the form fields
