@@ -781,6 +781,7 @@
     </style>
   </head>
   <body oncontextmenu="return false;">
+    <title>GATEPASS</title>
     <div id="loader" style="display: none" align="center">
       <div id="progressBackgroundFilter"></div>
       <div id="processMessage">
@@ -792,7 +793,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- <link rel="shortcut icon" type="image/png" href="/imgs/favicon.png" /> -->
-    <title>GATEPASS</title>
     <link
       rel="icon"
       type="image/png"
@@ -809,6 +809,7 @@
     <link rel="stylesheet" href="./gate_files/main.css" />
 
     <script src="./gate_files/modernizr-custom.js.download"></script>
+
     <style>
       label {
         color: black;
@@ -1084,36 +1085,6 @@
         document.getElementById("firmyy").innerHTML =
           "प्रांशु फूड्स प्राइवेट लिमिटेड मूनक पंजाब";
 
-      // document.getElementById("yydate").innerHTML = date;
-
-      // document.getElementById("time").innerHTML = time;
-
-      // document.getElementById("gatepass").innerHTML = gatepass;
-      // document.getElementById("r9").innerHTML = r9;
-      // document.getElementById("r9no").innerHTML = r9no;
-      // document.getElementById("weighty").innerHTML = weighty;
-
-      // document.getElementById("price").innerHTML = price;
-      // document.getElementById("bag").innerHTML = bag;
-      // document.getElementById("truck").innerHTML = truck;
-      // document.getElementById("distance").innerHTML = distance;
-
-      // document.write("date = " + date + "<br>");
-
-      // document.write("time = " + time + "<br>");
-      // document.write("firm = " + firm + "<br>");
-
-      // document.write("gatepass = " + gatepass + "<br>");
-      // document.write("r9 = " + r9 + "<br>");
-      // document.write("r9no = " + r9no + "<br>");
-
-      // document.write("weight = " + weight + "<br>");
-      // document.write("price = " + price + "<br>");
-      // document.write("bag = " + bag + "<br>");
-
-      // document.write("truck = " + truck + "<br>");
-      // document.write("distance = " + distance + "<br>");
-
       document.getElementById("yydate").innerHTML = date;
       document.getElementById("gatepasses").innerHTML = gatepass;
       document.getElementById("bagss").innerHTML = bag;
@@ -1127,25 +1098,18 @@
       document.getElementById("avg_time").innerHTML =
         Math.round((distance / 30 + Number.EPSILON) * 100) / 100;
 
-      //document.getElementById("yydate").innerHTML = date;
-      //-----------------------------------------------------------------------------------------------------
       const changeDateFormatTo = (datess) => {
         const [yy, mm, dd] = datess.split(/-/g);
         document.getElementById("dddate").innerHTML = `${dd}/${mm}/${yy}`;
-        //   //return `${dd}/${mm}/${yy}`;
       };
 
       const formattedDate = changeDateFormatTo(date);
       console.log(`Formatted date is: ${firm}`);
-      //console.log(`formss date is: ${formattedDate}`);
 
       document.getElementById("r9").innerHTML = r9;
       document.getElementById("weighty").innerHTML = weight;
-      document.getElementById("price").innerHTML = price;
 
-      document.getElementById("r9no").innerHTML = r9no;
-      document.getElementById("gatepass").innerHTML = gatepass;
-      //document.getElementById("yydate").innerHTML = date;
+      document.title = truck + "_GATE_" + date;
     </script>
 
     <script type="text/javascript">
@@ -1167,21 +1131,6 @@
         size: 120,
         value: website,
       });
-
-      // let qrcodeContainer2 = document.getElementById("qrcode-2");
-      // qrcodeContainer2.innerHTML = "";
-      // new QRious({
-      //   element: qrcodeContainer2,
-      //   background: "#ffff",
-      //   backgroundAlpha: 0,
-      //   foreground: "#000",
-      //   foregroundAlpha: 1,
-      //   level: "H",
-      //   // padding: 0,
-      //   size: 120,
-      //   value: website,
-      // });
-      // document.getElementById("qrcode-container").style.display = "block";
     </script>
 
     <script>

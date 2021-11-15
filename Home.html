@@ -65,8 +65,7 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- <link rel="shortcut icon" type="image/png" href="/imgs/favicon.png" /> -->
-    <title>9R</title>
+    <title>_9R_</title>
     <link
       rel="icon"
       type="image/png"
@@ -285,11 +284,6 @@
                 </tr>
               </tbody>
             </table>
-            <!-- <p style="float:right;font-size:10px;">व्यापारी का पूरा नाम- HARMEET SINGH</p>
-        <br>
-          <section style="float:right; clear: right;">
-                                                  </section>
-          <p style="float:right;font-size:10px;">व्यापारी का हस्ताक्षर</p> -->
             <table align="left" width="100%">
               <tbody>
                 <tr>
@@ -354,42 +348,9 @@
       truck = unescape(params["truck"]);
       distance = unescape(params["distance"]);
 
-      // document.getElementById("yydate").innerHTML = date;
-
-      // document.getElementById("time").innerHTML = time;
-      // document.getElementById("firm").innerHTML = firm;
-      // document.getElementById("gatepass").innerHTML = gatepass;
-      // document.getElementById("r9").innerHTML = r9;
-      // document.getElementById("r9no").innerHTML = r9no;
-      // document.getElementById("weighty").innerHTML = weighty;
-
-      // document.getElementById("price").innerHTML = price;
-      // document.getElementById("bag").innerHTML = bag;
-      // document.getElementById("truck").innerHTML = truck;
-      // document.getElementById("distance").innerHTML = distance;
-
-      // document.write("date = " + date + "<br>");
-
-      // document.write("time = " + time + "<br>");
-      // document.write("firm = " + firm + "<br>");
-
-      // document.write("gatepass = " + gatepass + "<br>");
-      // document.write("r9 = " + r9 + "<br>");
-      // document.write("r9no = " + r9no + "<br>");
-
-      // document.write("weight = " + weight + "<br>");
-      // document.write("price = " + price + "<br>");
-      // document.write("bag = " + bag + "<br>");
-
-      // document.write("truck = " + truck + "<br>");
-      // document.write("distance = " + distance + "<br>");
-
-      //document.getElementById("yydate").innerHTML = date;
-
       const changeDateFormatTo = (datess) => {
         const [yy, mm, dd] = datess.split(/-/g);
         document.getElementById("dddate").innerHTML = `${dd}/${mm}/${yy}`;
-        //   //return `${dd}/${mm}/${yy}`;
       };
 
       const formattedDate = changeDateFormatTo(date);
@@ -403,7 +364,7 @@
       document.getElementById("totallycopy").innerHTML =
         Math.round((price * weight + Number.EPSILON) * 100) / 100;
 
-      ////
+      document.title = truck + "_9R_" + date;
       document.getElementById("r9no").innerHTML = r9no;
 
       if (firm === "Shri+Krishna+International+Delhi")
