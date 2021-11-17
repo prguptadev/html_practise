@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<script src="qrcode.min.js"></script>
+
+<style>
+  #qrcode {
+  width:120px;
+  height:120px;
+  
+}
+</style>
+
+<div id="qrcode"></div>
+
+
+<script type="text/javascript">
+  var qrcode = new QRCode(document.getElementById("qrcode"), {
+    text: "Gatepass no:17121983(75)/GP/00085,Issue from:VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH,Crop:?PADDY,Weight:239.150,Vehical no:UP82T3815,applicationnumber:22318548InstrumentType:Gatepass,http://emandi.up.gov.in/",
+  
+ 
+    colorDark : "#000000",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.L
+  });
+  </script>
+
+  <!-- <script type="text/javascript">
+
+
+   
+var qrcode = new QRCode("qrcode");
+
+	
+	var elText = "Gatepass no:17121983(75)/GP/00085,Issue from:VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH,Crop:?PADDY,Weight:239.150,Vehical no:UP82T3815,applicationnumber:22318548InstrumentType:Gatepass,http://emandi.up.gov.in/"
+	
+//	qrcode.makeCode(elText.value);
+
+
+
+
+  </Script> -->
+</div>

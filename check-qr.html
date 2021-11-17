@@ -1,10 +1,15 @@
+<!DOCTYPE html>
 HTML CSSResult Skip Results Iframe EDIT ON
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 
 <style>
   #qrcode-2 {
-    width: 120;
-    height: 120;
+    width: 120px;
+    height: 120px;
+  }
+  #qrcode-1 {
+    width: 120px;
+    height: 120px;
   }
 </style>
 
@@ -22,20 +27,23 @@ HTML CSSResult Skip Results Iframe EDIT ON
   </form>
 
   <div id="qrcode-container">
-    <canvas id="qrcode" class="qrcode"></canvas>
+    <canvas id="qrcode-1" class="qrcode"></canvas>
     <h4>With some styles</h4>
     <canvas id="qrcode-2" class="qrcode"></canvas>
   </div>
 
   <script type="text/javascript">
     function generateQRCode() {
-      let website = document.getElementById("website").value;
+      let website =
+        "Gatepass no:17121983(75)/GP/00085,Issue from:VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH,Crop:?PADDY,Weight:239.150,Vehical no:UP82T3815,applicationnumber:22318548InstrumentType:Gatepass,http://emandi.up.gov.in/";
       if (website) {
-        let qrcodeContainer = document.getElementById("qrcode");
+        let qrcodeContainer = document.getElementById("qrcode-1");
         qrcodeContainer.innerHTML = "";
         new QRious({
           element: qrcodeContainer,
-          size: 120,
+
+          level: "L",
+          size: -2500,
           value: website,
         });
         /*With some styles*/

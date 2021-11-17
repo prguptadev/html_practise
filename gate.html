@@ -741,7 +741,8 @@
     <link rel="stylesheet" href="./gate_files/bootstrap.min.css" />
     <link rel="stylesheet" href="./gate_files/font-awesome.min.css" />
     <link rel="stylesheet" href="./gate_files/main.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script src="qrious.min.js"></script>
+
     <script src="./gate_files/modernizr-custom.js.download"></script>
 
     <style type="text/css">
@@ -868,9 +869,8 @@
               </td>
               <td align="right">
                 <div id="qrcode-container">
-                  <canvas id="qrcode" class="qrcode"></canvas>
+                  <img id="qrcodess-1" class="qrcode" />
                 </div>
-                <div></div>
               </td>
             </tr>
           </tbody>
@@ -1112,6 +1112,13 @@
       document.title = truck + "_GATE_" + date;
     </script>
 
+    <style>
+      #qrcodess-1 {
+        width: 120px;
+        height: 120px;
+      }
+    </style>
+
     <script type="text/javascript">
       let website =
         "Gatepass no:" +
@@ -1124,14 +1131,40 @@
         gatepassrandom +
         "InstrumentType:Gatepass,http://emandi.up.gov.in/";
 
-      let qrcodeContainer = document.getElementById("qrcode");
-      qrcodeContainer.innerHTML = "";
+      let qrcodeContainer2 = document.getElementById("qrcodess-1");
+      qrcodeContainer2.innerHTML = "";
       new QRious({
-        element: qrcodeContainer,
-        size: 120,
+        element: qrcodeContainer2,
+        background: "#ffff",
+        backgroundAlpha: 0,
+        foreground: "#000",
+        foregroundAlpha: 1,
+        level: "Q",
+        size: 230,
         value: website,
       });
     </script>
+
+    <!-- <script type="text/javascript">
+      let website =
+        "Gatepass no:" +
+        gatepass +
+        ",Issue from:VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH,Crop:?PADDY,Weight:" +
+        weight +
+        ",Vehical no:" +
+        truck +
+        ",applicationnumber:" +
+        gatepassrandom +
+        "InstrumentType:Gatepass,http://emandi.up.gov.in/";
+
+      // let qrcodeContainer = document.getElementById("qrcode");
+      // qrcodeContainer.innerHTML = "";
+      // new QRious({
+      //   element: qrcodeContainer,
+      //   size: 120,
+      //   value: website,
+      // });
+    </script> -->
 
     <script>
       $(document).keydown(function (event) {
