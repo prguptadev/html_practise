@@ -982,7 +982,7 @@
                   <td>
                     <label id="crop_code"></label>
                   </td>
-                  <td><label id="crop_type"></label></td>
+                  <td><label id="crop_typess"></label></td>
                   <td><label id="bagss"></label></td>
                   <td><label id="weighty"></label></td>
                   <td><label>कुंतल</label></td>
@@ -1065,13 +1065,14 @@
           ).split("&");
           for (var i = 0; i < pairs.length; i++) {
             nameVal = pairs[i].split("=");
-            console.log(nameVal);
+            // console.log(nameVal);
             params[nameVal[0]] = nameVal[1];
           }
         }
         return params;
       }
-      var decoder = new TextDecoder("utf-8");
+      let cropforqr;
+      // var decoder = new TextDecoder("utf-8");
       // decodeURIComponent(escape(s));
       params = getParams();
       console.log(params);
@@ -1127,22 +1128,47 @@
         document.getElementById("firmyy").innerHTML = firm.replace(/\+/g, " ");
       }
 
-      if (crop_code === "WHEAT")
+      crop_code.replace(/\+/g, " ");
+      if (crop_code === "WHEAT") {
         document.getElementById("crop_code").innerHTML = "गेहूँ";
-      if (crop_code === "MUSTARD")
-        document.getElementById("crop_code").innerHTML = "लाही तथा सरसो *2";
-      if (crop_code === "BARLEY")
-        document.getElementById("crop_code").innerHTML = "जौ";
-      if (crop_code === "PADDY")
-        document.getElementById("crop_code").innerHTML = "धान";
-      if (crop_code === "BAJRA")
-        document.getElementById("crop_code").innerHTML = "बाजरा";
-      if (crop_code === "MAIZE")
-        document.getElementById("crop_code").innerHTML = "मक्का";
-      if (crop_code === "GROUND+NUT")
-        document.getElementById("crop_code").innerHTML = "मूँगफली";
+        cropforqr = "WHEAT";
+      }
 
-      document.getElementById("crop_type").innerHTML = crop_type;
+      if (crop_code === "MUSTARD") {
+        document.getElementById("crop_code").innerHTML = "लाही तथा सरसो *2";
+        cropforqr = "RDMST*1";
+      }
+
+      if (crop_code === "BARLEY") {
+        document.getElementById("crop_code").innerHTML = "जौ";
+        cropforqr = "BARLEY";
+      }
+
+      if (crop_code === "PADDY") {
+        document.getElementById("crop_code").innerHTML = "धान";
+        cropforqr = "PADDY";
+      }
+
+      if (crop_code === "BAJRA") {
+        document.getElementById("crop_code").innerHTML = "बाजरा";
+        cropforqr = "BAJRA";
+      }
+
+      if (crop_code === "MAIZE") {
+        document.getElementById("crop_code").innerHTML = "मक्का";
+        cropforqr = "MAIZE";
+      }
+
+      if (crop_code === "GROUND+NUT") {
+        document.getElementById("crop_code").innerHTML = "मूँगफली";
+        cropforqr = "GROUND NUT";
+      }
+
+      crop_type.replace(/\+/g, "  ");
+      if (crop_type === "Samanaya")
+        document.getElementById("crop_typess").textContent = "सामान्य ";
+
+      // document.getElementById("crop_type").innerHTML = crop_type;
       document.getElementById("yydate").innerHTML = date;
       document.getElementById("gatepasses").innerHTML = gatepass;
       document.getElementById("bagss").innerHTML = bag;
@@ -1206,7 +1232,9 @@
         gatepass +
         ",Issue from:" +
         company +
-        "Crop:?PADDY,Weight:" +
+        "Crop:?" +
+        cropforqr +
+        ",Weight:" +
         weight +
         ",Vehical no:" +
         truck +

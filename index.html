@@ -85,7 +85,7 @@
       };                     
       control = new google.elements.transliteration.TransliterationControl(options);  
       control.makeTransliteratable(['txtMessage']);   
-     // control.makeTransliteratable(['crop_type']);  
+      //control.makeTransliteratable(['crop_type']);  
   }
   google.setOnLoadCallback(onLoad);         
 </script>
@@ -99,6 +99,7 @@
         <div class="flex-container" >
           <div style="width: 800px;">
             <label >विक्रेता फर्म का नाम व जिला :</label>
+            <p>
               <input
                 placeholder="VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH"
                 oninput="this.className = ''"
@@ -112,6 +113,7 @@
                     <option value="VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH"></option>
                     <option value="V C ENTERPRISES, 98 BANDIYAAN JAITHARA ETAH"></option>
               </datalist>
+              </p>
             </textarea>
   
           </div>
@@ -341,15 +343,15 @@
     let newtime = hh+":"+mm+":"+ss; 
     //let timess = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();  
 
-    var currentDate  = new Date(),
-    currentDay   = currentDate.getDate() < 10 
-                 ? '0' + currentDate.getDate() 
-                 : currentDate.getDate(),
-    currentMonth = currentDate.getMonth() < 9 
-                 ? '0' + (currentDate.getMonth() + 1) 
-                 : (currentDate.getMonth() + 1);
+    // var currentDate  = new Date(),
+    // currentDay   = currentDate.getDate() < 10 
+    //              ? '0' + currentDate.getDate() 
+    //              : currentDate.getDate(),
+    // currentMonth = currentDate.getMonth() < 9 
+    //              ? '0' + (currentDate.getMonth() + 1) 
+    //              : (currentDate.getMonth() + 1);
 
-document.getElementById("currentdate").value = currentDay + '/' + currentMonth + '/' +  currentDate.getFullYear();
+//document.getElementById("currentdate").innerHTML = currentDay + '/' + currentMonth + '/' +  currentDate.getFullYear();
 
     document.getElementById("currentTime").value=newtime;
 

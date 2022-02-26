@@ -73,11 +73,10 @@
         control = new google.elements.transliteration.TransliterationControl(
           options
         );
-        control.makeTransliteratable(["crop_typess"]);
+        // control.makeTransliteratable(["crop_typess"]);
       }
       google.setOnLoadCallback(onLoad);
     </script>
-    <textarea name="crop_typess" id="crop_typess"></textarea>
 
     <div id="loader" style="display: none" align="center">
       <div id="progressBackgroundFilter"></div>
@@ -361,6 +360,7 @@
         }
         return params;
       }
+      let cropforqr;
       params = getParams();
       date = unescape(params["date"]);
       time = unescape(params["time"]);
@@ -456,31 +456,56 @@
         document.getElementById("companyID").innerHTML = "17121983 ";
       }
 
-      if (crop_code === "WHEAT")
+      if (crop_code === "WHEAT") {
         document.getElementById("crop_code").innerHTML = "गेहूँ";
-      if (crop_code === "MUSTARD")
+        cropforqr = "WHEAT";
+      }
+
+      if (crop_code === "MUSTARD") {
         document.getElementById("crop_code").innerHTML = "लाही तथा सरसो *2";
-      if (crop_code === "BARLEY")
+        cropforqr = "RDMST*1";
+      }
+
+      if (crop_code === "BARLEY") {
         document.getElementById("crop_code").innerHTML = "जौ";
-      if (crop_code === "PADDY")
+        cropforqr = "BARLEY";
+      }
+
+      if (crop_code === "PADDY") {
         document.getElementById("crop_code").innerHTML = "धान";
-      if (crop_code === "BAJRA")
+        cropforqr = "PADDY";
+      }
+
+      if (crop_code === "BAJRA") {
         document.getElementById("crop_code").innerHTML = "बाजरा";
-      if (crop_code === "MAIZE")
+        cropforqr = "BAJRA";
+      }
+
+      if (crop_code === "MAIZE") {
         document.getElementById("crop_code").innerHTML = "मक्का";
-      if (crop_code === "GROUND+NUT")
+        cropforqr = "MAIZE";
+      }
+
+      if (crop_code === "GROUND+NUT") {
         document.getElementById("crop_code").innerHTML = "मूँगफली";
+        cropforqr = "GROUND NUT";
+      }
+      document.getElementById("crop_code").innerHTML = "मूँगफली";
 
-      console.log(crop_type.replace(/\+/g, "  "));
+      crop_type.replace(/\+/g, "  ");
 
-      document.getElementById("crop_typess").textContent = crop_type;
-      console.log(document.getElementById("crop_typess").textContent);
+      if (crop_type === "Samanaya")
+        document.getElementById("crop_typess").textContent = "सामान्य ";
+
+      //  console.log(document.getElementById("crop_typess").textContent);
     </script>
     <script type="text/javascript">
       let website =
         "SerialNo:" +
         r9 +
-        ",Mandi:Etah,Crop:?PADDYInstrumentType:9R,http://emandi.up.gov.in/";
+        ",Mandi:Etah,Crop:?" +
+        cropforqr +
+        "InstrumentType:9R,http://emandi.up.gov.in/";
 
       let qrcodeContainer2 = document.getElementById("qrcode-2");
       qrcodeContainer2.innerHTML = "";
