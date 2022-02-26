@@ -5,7 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="gtransapi.js"></script>
     <link
       rel="icon"
       type="image/png"
@@ -55,6 +56,29 @@
     </style>
   </head>
   <body oncontextmenu="return false;">
+    <script type="text/javascript">
+      google.load("elements", "1", { packages: "transliteration" });
+      var control;
+      function onLoad() {
+        var options = {
+          //Source Language
+          sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
+          // Destination language to Transliterate
+          destinationLanguage: [
+            google.elements.transliteration.LanguageCode.HINDI,
+          ],
+          shortcutKey: "ctrl+g",
+          transliterationEnabled: true,
+        };
+        control = new google.elements.transliteration.TransliterationControl(
+          options
+        );
+        control.makeTransliteratable(["crop_typess"]);
+      }
+      google.setOnLoadCallback(onLoad);
+    </script>
+    <textarea name="crop_typess" id="crop_typess"></textarea>
+
     <div id="loader" style="display: none" align="center">
       <div id="progressBackgroundFilter"></div>
       <div id="processMessage">
@@ -168,7 +192,7 @@
           <tbody>
             <tr>
               <td>पुस्तक संख्या</td>
-              <td><label>17121983 </label></td>
+              <td><label id="companyID"></label></td>
               <td>क्रम संख्या</td>
               <td><label id="r9"></label></td>
               <td>विक्रय/ नीलाम का दिनांक</td>
@@ -185,15 +209,13 @@
             </tr>
             <tr>
               <td>आढ़तिया / व्यापारी का लाइसेंस संख्या</td>
-              <td colspan="1"><label>L/2016/75/17121983 </label></td>
+              <td colspan="1"><label id="lic"></label></td>
               <td>आढ़तिया / व्यापारी फर्म का नाम व जिला</td>
               <td colspan="1">
-                <label
-                  >VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH
-                </label>
+                <label id="company"> </label>
               </td>
               <td>आढ़तिया / व्यापारी का नाम</td>
-              <td colspan="1"><label>VIRESH CHANDRA GUPTA </label></td>
+              <td colspan="1"><label id="owner"></label></td>
             </tr>
 
             <tr>
@@ -249,10 +271,10 @@
               <tbody>
                 <tr class="text-center">
                   <td style="text-align: center" valign="top">
-                    <label>धान</label>
+                    <label id="crop_code"></label>
                   </td>
                   <td valign="top">
-                    <label>सुगंधा</label>
+                    <label id="crop_typess"></label>
                   </td>
                   <td valign="top">
                     <label id="weighty"></label>
@@ -293,9 +315,7 @@
             <table align="left" width="100%">
               <tbody>
                 <tr>
-                  <td>
-                    व्यापारी का पूरा नाम: <label>VIRESH CHANDRA GUPTA </label>
-                  </td>
+                  <td>व्यापारी का पूरा नाम: <label id="ownerss"> </label></td>
                   <td align="left"></td>
 
                   <td>&nbsp;</td>
@@ -354,13 +374,17 @@
       truck = unescape(params["truck"]);
       distance = unescape(params["distance"]);
 
+      company = unescape(params["company"]);
+      crop_code = unescape(params["crop_code"]);
+      crop_type = unescape(params["crop_type"]);
+
       const changeDateFormatTo = (datess) => {
         const [yy, mm, dd] = datess.split(/-/g);
         document.getElementById("dddate").innerHTML = `${dd}/${mm}/${yy}`;
       };
 
       const formattedDate = changeDateFormatTo(date);
-      console.log(`Formatted date is: ${formattedDate}`);
+      //console.log(`Formatted date is: ${formattedDate}`);
 
       document.getElementById("r9").innerHTML = r9;
       document.getElementById("weighty").innerHTML = weight;
@@ -403,6 +427,54 @@
       if (firm === "Pranshu+Foods+Private+Limited+Manook+Punjab")
         document.getElementById("r9firm").innerHTML =
           "प्रांशु फूड्स प्राइवेट लिमिटेड मूनक पंजाब";
+      else
+        document.getElementById("r9firm").innerHTML = firm.replace(/\+/g, " ");
+
+      if (company === "V+C+ENTERPRISES,+98+BANDIYAAN+JAITHARA+ETAH") {
+        document.getElementById("company").innerHTML = company.replace(
+          /\+/g,
+          " "
+        );
+        //  "V C ENTERPRISES, 98 BANDIYAAN JAITHARA ETAH ";
+        document.getElementById("owner").innerHTML = "SEEMA GUPTA ";
+        document.getElementById("ownerss").innerHTML = "SEEMA GUPTA ";
+        document.getElementById("lic").innerHTML = "L/2017/75/57027386 ";
+        document.getElementById("companyID").innerHTML = "57027386 ";
+      }
+
+      if (
+        company === "VIJAY+LAXMI+DALL+MILL,+MOHALLA+GANDHI+NAGAR+JAITHARA+ETAH"
+      ) {
+        document.getElementById("company").innerHTML = company.replace(
+          /\+/g,
+          " "
+        );
+        //  "VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH ";
+        document.getElementById("owner").innerHTML = "VIRESH CHANDRA GUPTA ";
+        document.getElementById("ownerss").innerHTML = "VIRESH CHANDRA GUPTA ";
+        document.getElementById("lic").innerHTML = "L/2016/75/17121983 ";
+        document.getElementById("companyID").innerHTML = "17121983 ";
+      }
+
+      if (crop_code === "WHEAT")
+        document.getElementById("crop_code").innerHTML = "गेहूँ";
+      if (crop_code === "MUSTARD")
+        document.getElementById("crop_code").innerHTML = "लाही तथा सरसो *2";
+      if (crop_code === "BARLEY")
+        document.getElementById("crop_code").innerHTML = "जौ";
+      if (crop_code === "PADDY")
+        document.getElementById("crop_code").innerHTML = "धान";
+      if (crop_code === "BAJRA")
+        document.getElementById("crop_code").innerHTML = "बाजरा";
+      if (crop_code === "MAIZE")
+        document.getElementById("crop_code").innerHTML = "मक्का";
+      if (crop_code === "GROUND+NUT")
+        document.getElementById("crop_code").innerHTML = "मूँगफली";
+
+      console.log(crop_type.replace(/\+/g, "  "));
+
+      document.getElementById("crop_typess").textContent = crop_type;
+      console.log(document.getElementById("crop_typess").textContent);
     </script>
     <script type="text/javascript">
       let website =

@@ -2,7 +2,13 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="gtransapi.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Mukta&display=swap"
+      rel="stylesheet"
+    />
     <style type="text/css">
       .swal-icon--error {
         border-color: #f27474;
@@ -782,7 +788,30 @@
     </style>
   </head>
   <body oncontextmenu="return false;">
+    <script type="text/javascript">
+      google.load("elements", "1", { packages: "transliteration" });
+      var control;
+      function onLoad() {
+        var options = {
+          //Source Language
+          sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
+          // Destination language to Transliterate
+          destinationLanguage: [
+            google.elements.transliteration.LanguageCode.HINDI,
+          ],
+          shortcutKey: "ctrl+g",
+          transliterationEnabled: true,
+        };
+        control = new google.elements.transliteration.TransliterationControl(
+          options
+        );
+        control.makeTransliteratable(["crop_type"]);
+      }
+      google.setOnLoadCallback(onLoad);
+    </script>
+
     <title>GATEPASS</title>
+
     <div id="loader" style="display: none" align="center">
       <div id="progressBackgroundFilter"></div>
       <div id="processMessage">
@@ -880,7 +909,7 @@
           <tbody>
             <tr>
               <td>पुस्तक संख्या</td>
-              <td><label>17121983 </label></td>
+              <td><label id="companyID"> </label></td>
               <td>गेटपास संख्या</td>
               <td><label id="gatepasses"></label></td>
               <td>आवेदन संख्या (यूनिक कोड)</td>
@@ -932,10 +961,7 @@
               <tbody>
                 <tr>
                   <td rowspan="2">
-                    <label
-                      >VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA
-                      ETAH</label
-                    >
+                    <label id="company"></label>
                   </td>
                   <td rowspan="2">
                     <label>ट्रक</label><br /><label id="truckss"></label>
@@ -954,9 +980,9 @@
                 </tr>
                 <tr>
                   <td>
-                    <label>धान</label>
+                    <label id="crop_code"></label>
                   </td>
-                  <td><label>सुगंधा</label></td>
+                  <td><label id="crop_type"></label></td>
                   <td><label id="bagss"></label></td>
                   <td><label id="weighty"></label></td>
                   <td><label>कुंतल</label></td>
@@ -1039,15 +1065,21 @@
           ).split("&");
           for (var i = 0; i < pairs.length; i++) {
             nameVal = pairs[i].split("=");
+            console.log(nameVal);
             params[nameVal[0]] = nameVal[1];
           }
         }
         return params;
       }
+      var decoder = new TextDecoder("utf-8");
+      // decodeURIComponent(escape(s));
       params = getParams();
+      console.log(params);
       date = unescape(params["date"]);
       time = unescape(params["time"]);
       firm = unescape(params["firm"]);
+      //   firm = decodeURIComponent(escape(params["firm"]));
+      //   console.log("fim-- " + decoder.decode(firm));
       gatepass = unescape(params["gatepass"]);
       r9 = unescape(params["9r"]);
       r9no = unescape(params["9rno"]);
@@ -1057,37 +1089,60 @@
       truck = unescape(params["truck"]);
       distance = unescape(params["distance"]);
 
+      company = unescape(params["company"]);
+      crop_code = unescape(params["crop_code"]);
+      crop_type = unescape(params["crop_type"]);
+
       if (firm === "Shri+Krishna+International+Delhi")
         document.getElementById("firmyy").innerHTML =
           "श्री कृष्णा इंटरनेशनल दिल्ली";
-      if (firm === "New+Light+Overseas+dhora+tanda+bareilly")
+      else if (firm === "New+Light+Overseas+dhora+tanda+bareilly")
         document.getElementById("firmyy").innerHTML =
           "नई लाइट ओवरसीज दौरा टांडा बरैली";
-      if (firm === "BholeNath+Foods+Limited+Delhi")
+      else if (firm === "BholeNath+Foods+Limited+Delhi")
         document.getElementById("firmyy").innerHTML =
           "भोलेनाथ फूड्स लिमिटेड दिल्ली";
-      if (firm === "Bholenath+Exim+Private+Limited+Delhi")
+      else if (firm === "Bholenath+Exim+Private+Limited+Delhi")
         document.getElementById("firmyy").innerHTML =
           "भोलेनाथ एक्सिम प्राइवेट लिमिटेड दिल्ली";
-      if (firm === "New+Light+Overseas+dhora+tanda")
+      else if (firm === "New+Light+Overseas+dhora+tanda")
         document.getElementById("firmyy").innerHTML =
           "नई लाइट ओवरसीज धोरा टांडा";
-      if (firm === "BholeNath+Foods+Kakoda+PaniPat")
+      else if (firm === "BholeNath+Foods+Kakoda+PaniPat")
         document.getElementById("firmyy").innerHTML =
           "भोले नाथ फूड्सलिमिटेड ककोड़ा पानीपत";
-      if (firm === "Rehman+rice+industries+dhora+tanda+bareilly")
+      else if (firm === "Rehman+rice+industries+dhora+tanda+bareilly")
         document.getElementById("firmyy").innerHTML =
           "रेहमान राइस इंडस्ट्रीज दौरा टांडा बरैली";
-      if (firm === "BholeNath+Foods+Limited+Kakoda+PaniPat")
+      else if (firm === "BholeNath+Foods+Limited+Kakoda+PaniPat")
         document.getElementById("firmyy").innerHTML =
           "भोलेनाथ फूड्स लिमिटेड ककोड़ा पानीपत";
-      if (firm === "Bansal+Foods+India+shabana+Punjab")
+      else if (firm === "Bansal+Foods+India+shabana+Punjab")
         document.getElementById("firmyy").innerHTML =
           "बंसल फूड्स इंडिया शबाना पंजाब";
-      if (firm === "Pranshu+Foods+Private+Limited+Manook+Punjab")
+      else if (firm === "Pranshu+Foods+Private+Limited+Manook+Punjab")
         document.getElementById("firmyy").innerHTML =
           "प्रांशु फूड्स प्राइवेट लिमिटेड मूनक पंजाब";
+      else {
+        document.getElementById("firmyy").innerHTML = firm.replace(/\+/g, " ");
+      }
 
+      if (crop_code === "WHEAT")
+        document.getElementById("crop_code").innerHTML = "गेहूँ";
+      if (crop_code === "MUSTARD")
+        document.getElementById("crop_code").innerHTML = "लाही तथा सरसो *2";
+      if (crop_code === "BARLEY")
+        document.getElementById("crop_code").innerHTML = "जौ";
+      if (crop_code === "PADDY")
+        document.getElementById("crop_code").innerHTML = "धान";
+      if (crop_code === "BAJRA")
+        document.getElementById("crop_code").innerHTML = "बाजरा";
+      if (crop_code === "MAIZE")
+        document.getElementById("crop_code").innerHTML = "मक्का";
+      if (crop_code === "GROUND+NUT")
+        document.getElementById("crop_code").innerHTML = "मूँगफली";
+
+      document.getElementById("crop_type").innerHTML = crop_type;
       document.getElementById("yydate").innerHTML = date;
       document.getElementById("gatepasses").innerHTML = gatepass;
       document.getElementById("bagss").innerHTML = bag;
@@ -1107,10 +1162,33 @@
       };
 
       const formattedDate = changeDateFormatTo(date);
-      console.log(`Formatted date is: ${firm}`);
 
       document.getElementById("r9").innerHTML = r9;
       document.getElementById("weighty").innerHTML = weight;
+
+      if (company === "V+C+ENTERPRISES,+98+BANDIYAAN+JAITHARA+ETAH") {
+        document.getElementById("companyID").innerHTML = "57027386 ";
+        document.getElementById("company").innerHTML = company.replace(
+          /\+/g,
+          " "
+        );
+        //"V C ENTERPRISES, 98 BANDIYAAN JAITHARA ETAH";
+        // document.getElementById("owner").innerHTML = "SEEMA GUPTA";
+        //  document.getElementById("lic").innerHTML = "L/2017/75/57027386";
+      }
+
+      if (
+        company === "VIJAY+LAXMI+DALL+MILL,+MOHALLA+GANDHI+NAGAR+JAITHARA+ETAH"
+      ) {
+        document.getElementById("companyID").innerHTML = "17121983 ";
+        document.getElementById("company").innerHTML = company.replace(
+          /\+/g,
+          " "
+        );
+        // "VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH";
+        // document.getElementById("owner").innerHTML = "VIRESH CHANDRA GUPTA";
+        //document.getElementById("lic").innerHTML = "L/2016/75/17121983";
+      }
 
       document.title = truck + "_GATE_" + date;
     </script>
@@ -1126,7 +1204,9 @@
       let website =
         "Gatepass no:" +
         gatepass +
-        ",Issue from:VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH,Crop:?PADDY,Weight:" +
+        ",Issue from:" +
+        company +
+        "Crop:?PADDY,Weight:" +
         weight +
         ",Vehical no:" +
         truck +

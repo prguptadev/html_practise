@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="gtransapi.js"></script>
   <link
     href="https://fonts.googleapis.com/css?family=Raleway"
     rel="stylesheet"
   />
   
   <style>
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+
+}
+
+
     * {
       box-sizing: border-box;
     }
@@ -60,38 +70,131 @@
     }
   </style>
   <body>
+    
+<script type="text/javascript">
+  google.load("elements", "1", { packages: "transliteration" });
+  var control;
+  function onLoad() {         
+      var options = {
+          //Source Language
+          sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
+          // Destination language to Transliterate
+          destinationLanguage: [google.elements.transliteration.LanguageCode.HINDI],
+          shortcutKey: 'ctrl+g',
+          transliterationEnabled: true
+      };                     
+      control = new google.elements.transliteration.TransliterationControl(options);  
+      control.makeTransliteratable(['txtMessage']);   
+     // control.makeTransliteratable(['crop_type']);  
+  }
+  google.setOnLoadCallback(onLoad);         
+</script>
+
+<textarea name="txtMessage" id="txtMessage"></textarea>
     <form id="regForm" action="./Home.html"  autocomplete="off" method="get" required>
       <h1>Details:</h1>
 
       <!-- One "tab" for each step in the form: -->
-      <div class="tab">
-        <div>
-        <label for="Date">Date :</label>
-        <p>
-          <input
-            placeholder="dd/mm/yyy"
-            oninput="this.className = ''"
-            name="date"
-            type="date"
-          />
-        </div>
-        </p>
-        Time :
+      <div class="tab" style="font-weight: bold;">
+        <div class="flex-container" >
+          <div style="width: 800px;">
+            <label >विक्रेता फर्म का नाम व जिला :</label>
+              <input
+                placeholder="VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH"
+                oninput="this.className = ''"
+                name="company"
+                autocomplete="off"
+                list="company"
+                value="V C ENTERPRISES, 98 BANDIYAAN JAITHARA ETAH"
+                required
+              />
+              <datalist id="company">
+                    <option value="VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH"></option>
+                    <option value="V C ENTERPRISES, 98 BANDIYAAN JAITHARA ETAH"></option>
+              </datalist>
+            </textarea>
+  
+          </div>
+          <div>
+
+            <label >कृषि उत्पादन का नाम :</label>
+          <p>
+            <input
+              placeholder="उत्पाद का चयन करें"
+              oninput="this.className = ''"
+              name="crop_code"
+              autocomplete="off"
+              list="crop_code"
+              value="MUSTARD"
+              required
+            />
+            <datalist id="crop_code">
+              <!-- <option value="गेहूँ"></option>
+              <option value="जौ"></option>
+              <option value="धान"></option>
+              <option value="बाजरा"></option>
+              <option value="मक्का"></option>
+              <option value="लाही तथा सरसो *2"></option> -->
+              <option value="WHEAT"></option>
+              <option value="BARLEY"></option>
+              <option value="PADDY"></option>
+              <option value="BAJRA"></option>
+              <option value="MAIZE"></option>
+              <option value="MUSTARD"></option>
+              <option value="GROUND NUT"></option>
+            </datalist>
+          </p>
+          </div>
+          <div>
+            <label >किस्म :</label>
+            <p >
+            
+              <input  type="text"  id="crop_type"  autocomplete="off" name="crop_type" value="Samanaya"> 
+            </p>
+          </div>
+         </div>
+         <p style="color: brown;">********************************************************************************************************************************************************************************************************************************************</p>
+      
+         <div class="flex-container">
+          <div style="width: 500px;"> 
+            <label for="Date">क्रय/ नीलाम का दिनांक :</label>
+            <p>
+              <input
+                placeholder="dd/mm/yyy"
+                oninput="this.className = ''"
+                id="currentdate"
+                name="date"
+                type="date"
+                required
+              />
+            </p>
+          </div>
+          <div>
+               
+        <label>जारी करने का समय :</label> 
         <p>
           <input
             id="currentTime"
             placeholder="23:59:59"
             oninput="this.className = ''"
             name="time"
+            
           />
         </p>
-        Firm Name.:
+          </div>
+
+         </div>
+      
+      
+     
+        <label>क्रेता फर्म का नाम व पता :</label>
         <p>
           <input
             placeholder="श्री कृष्णा इंटरनेशनल दिल्ली"
             oninput="this.className = ''"
             name="firm"
             list="browsers"
+            required
           />
         </p>
         <datalist id="browsers">
@@ -116,73 +219,110 @@
               <option value="Bansal Foods India shabana Punjab">
               <option value="Pranshu Foods Private Limited Manook Punjab">
         </datalist>
-        Gate Pass :
-        <p>
-          <input
-            placeholder="17121983(75)/GP/00085"
-            value="17121983(75)/GP/00085"
-            oninput="this.className = ''"
-            name="gatepass"
-          />
-        </p>
-        9R:
+        <div class="flex-container">
+          <div style="width: 500px;">
+            <label>सलंग्न प्रपत्र-9 की संख्या :</label>
         <p>
           <input
             placeholder="17121983(75)/9/00140"
             value="17121983(75)/9/00140"
             oninput="this.className = ''"
             name="9r"
+            required
           />
         </p>
-        6R No.:
+          </div>
+          <div style="width: 500px;">
+            <label>गेटपास संख्या :</label>
+            <p>
+              <input
+                placeholder="17121983(75)/GP/00085"
+                value="17121983(75)/GP/00085"
+                oninput="this.className = ''"
+                name="gatepass"
+                required
+              />
+            </p>
+          </div>
+        </div>
+
+      
+        
+        <label>6-र संख्या :</label>
         <p>
           <input
             placeholder="17121983(75)/6/00300,17121983(75)/6/00301,17121983(75)/6/00302"
             value="17121983(75)/6/00300,17121983(75)/6/00301,17121983(75)/6/00302"
             oninput="this.className = ''"
             name="9rno"
+            required
           />
         </p>
-        Weight :
-        <p>
-          <input
-            placeholder="123.456"
-            oninput="this.className = ''"
-            name="weight"
-          />
-        </p>
-        Rate:
+
+          <div class="flex-container">
+            <div>
+              <label>वजन :</label>
+              <p>
+                <input
+                  placeholder="123.456"
+                  oninput="this.className = ''"
+                  name="weight"
+                  required
+                />
+              </p>
+            </div>
+            <div>
+              <label>दर  :   (प्रति कुंतल)</label>
         <p>
           <input
             placeholder="1234.45"
             oninput="this.className = ''"
             name="price"
+            required
           />
         </p>
-        No of Bag :
-        <p>
-          <input
-            placeholder="000"
-            oninput="this.className = ''"
-            name="bag"
-          />
-        </p>
-        Truck No:
-        <p>
-          <input
-            placeholder="UP00X0000"
-            oninput="this.className = ''"
-            name="truck"
-          />
-        </p>
-        Distance :
+            </div>
+            <div>
+              <label>बण्डल की संख्या :</label>
+              <p>
+                <input
+                  placeholder="000"
+                  oninput="this.className = ''"
+                  name="bag"
+                  required
+                />
+              </p>
+            </div>
+          </div>
+
+       
+          <div class="flex-container">
+            <div style="width: 300px;">
+              <label>परिवहन का साधन और वाहन संख्या :</label>
+              <p>
+                <input
+                  placeholder="UP00X0000"
+                  oninput="this.className = ''"
+                  name="truck"
+                  required
+                />
+              </p>
+            </div>
+            <div>
+              
+        <label>गंतव्य की दूरी (KM) :</label>
         <p>
           <input
             placeholder="000"
             oninput="this.className = ''"
             name="distance"
+            required
           />
         </p>
+            </div>
+            </div>
+       
+       
       </div>
         <div class="center">
           <button type="submit"  formtarget="_blank"  required>   9R  </button>
@@ -201,8 +341,17 @@
     let newtime = hh+":"+mm+":"+ss; 
     //let timess = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();  
 
+    var currentDate  = new Date(),
+    currentDay   = currentDate.getDate() < 10 
+                 ? '0' + currentDate.getDate() 
+                 : currentDate.getDate(),
+    currentMonth = currentDate.getMonth() < 9 
+                 ? '0' + (currentDate.getMonth() + 1) 
+                 : (currentDate.getMonth() + 1);
+
+document.getElementById("currentdate").value = currentDay + '/' + currentMonth + '/' +  currentDate.getFullYear();
+
     document.getElementById("currentTime").value=newtime;
-    
 
     </script>
   </body>
