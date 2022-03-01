@@ -1,41 +1,3609 @@
-<!DOCTYPE html>
-<script src="qrcode.min.js"></script>
+<html>
+  <head>
+    <style type="text/css">
+      .swal-icon--error {
+        border-color: #f27474;
+        -webkit-animation: animateErrorIcon 0.5s;
+        animation: animateErrorIcon 0.5s;
+      }
+      .swal-icon--error__x-mark {
+        position: relative;
+        display: block;
+        -webkit-animation: animateXMark 0.5s;
+        animation: animateXMark 0.5s;
+      }
+      .swal-icon--error__line {
+        position: absolute;
+        height: 5px;
+        width: 47px;
+        background-color: #f27474;
+        display: block;
+        top: 37px;
+        border-radius: 2px;
+      }
+      .swal-icon--error__line--left {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        left: 17px;
+      }
+      .swal-icon--error__line--right {
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        right: 16px;
+      }
+      @-webkit-keyframes animateErrorIcon {
+        0% {
+          -webkit-transform: rotateX(100deg);
+          transform: rotateX(100deg);
+          opacity: 0;
+        }
+        to {
+          -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+          opacity: 1;
+        }
+      }
+      @keyframes animateErrorIcon {
+        0% {
+          -webkit-transform: rotateX(100deg);
+          transform: rotateX(100deg);
+          opacity: 0;
+        }
+        to {
+          -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+          opacity: 1;
+        }
+      }
+      @-webkit-keyframes animateXMark {
+        0% {
+          -webkit-transform: scale(0.4);
+          transform: scale(0.4);
+          margin-top: 26px;
+          opacity: 0;
+        }
+        50% {
+          -webkit-transform: scale(0.4);
+          transform: scale(0.4);
+          margin-top: 26px;
+          opacity: 0;
+        }
+        80% {
+          -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+          margin-top: -6px;
+        }
+        to {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+          margin-top: 0;
+          opacity: 1;
+        }
+      }
+      @keyframes animateXMark {
+        0% {
+          -webkit-transform: scale(0.4);
+          transform: scale(0.4);
+          margin-top: 26px;
+          opacity: 0;
+        }
+        50% {
+          -webkit-transform: scale(0.4);
+          transform: scale(0.4);
+          margin-top: 26px;
+          opacity: 0;
+        }
+        80% {
+          -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+          margin-top: -6px;
+        }
+        to {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+          margin-top: 0;
+          opacity: 1;
+        }
+      }
+      .swal-icon--warning {
+        border-color: #f8bb86;
+        -webkit-animation: pulseWarning 0.75s infinite alternate;
+        animation: pulseWarning 0.75s infinite alternate;
+      }
+      .swal-icon--warning__body {
+        width: 5px;
+        height: 47px;
+        top: 10px;
+        border-radius: 2px;
+        margin-left: -2px;
+      }
+      .swal-icon--warning__body,
+      .swal-icon--warning__dot {
+        position: absolute;
+        left: 50%;
+        background-color: #f8bb86;
+      }
+      .swal-icon--warning__dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        margin-left: -4px;
+        bottom: -11px;
+      }
+      @-webkit-keyframes pulseWarning {
+        0% {
+          border-color: #f8d486;
+        }
+        to {
+          border-color: #f8bb86;
+        }
+      }
+      @keyframes pulseWarning {
+        0% {
+          border-color: #f8d486;
+        }
+        to {
+          border-color: #f8bb86;
+        }
+      }
+      .swal-icon--success {
+        border-color: #a5dc86;
+      }
+      .swal-icon--success:after,
+      .swal-icon--success:before {
+        content: "";
+        border-radius: 50%;
+        position: absolute;
+        width: 60px;
+        height: 120px;
+        background: #fff;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      .swal-icon--success:before {
+        border-radius: 120px 0 0 120px;
+        top: -7px;
+        left: -33px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        -webkit-transform-origin: 60px 60px;
+        transform-origin: 60px 60px;
+      }
+      .swal-icon--success:after {
+        border-radius: 0 120px 120px 0;
+        top: -11px;
+        left: 30px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        -webkit-transform-origin: 0 60px;
+        transform-origin: 0 60px;
+        -webkit-animation: rotatePlaceholder 4.25s ease-in;
+        animation: rotatePlaceholder 4.25s ease-in;
+      }
+      .swal-icon--success__ring {
+        width: 80px;
+        height: 80px;
+        border: 4px solid hsla(98, 55%, 69%, 0.2);
+        border-radius: 50%;
+        box-sizing: content-box;
+        position: absolute;
+        left: -4px;
+        top: -4px;
+        z-index: 2;
+      }
+      .swal-icon--success__hide-corners {
+        width: 5px;
+        height: 90px;
+        background-color: #fff;
+        padding: 1px;
+        position: absolute;
+        left: 28px;
+        top: 8px;
+        z-index: 1;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+      .swal-icon--success__line {
+        height: 5px;
+        background-color: #a5dc86;
+        display: block;
+        border-radius: 2px;
+        position: absolute;
+        z-index: 2;
+      }
+      .swal-icon--success__line--tip {
+        width: 25px;
+        left: 14px;
+        top: 46px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+        -webkit-animation: animateSuccessTip 0.75s;
+        animation: animateSuccessTip 0.75s;
+      }
+      .swal-icon--success__line--long {
+        width: 47px;
+        right: 8px;
+        top: 38px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        -webkit-animation: animateSuccessLong 0.75s;
+        animation: animateSuccessLong 0.75s;
+      }
+      @-webkit-keyframes rotatePlaceholder {
+        0% {
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+        }
+        5% {
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+        }
+        12% {
+          -webkit-transform: rotate(-405deg);
+          transform: rotate(-405deg);
+        }
+        to {
+          -webkit-transform: rotate(-405deg);
+          transform: rotate(-405deg);
+        }
+      }
+      @keyframes rotatePlaceholder {
+        0% {
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+        }
+        5% {
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+        }
+        12% {
+          -webkit-transform: rotate(-405deg);
+          transform: rotate(-405deg);
+        }
+        to {
+          -webkit-transform: rotate(-405deg);
+          transform: rotate(-405deg);
+        }
+      }
+      @-webkit-keyframes animateSuccessTip {
+        0% {
+          width: 0;
+          left: 1px;
+          top: 19px;
+        }
+        54% {
+          width: 0;
+          left: 1px;
+          top: 19px;
+        }
+        70% {
+          width: 50px;
+          left: -8px;
+          top: 37px;
+        }
+        84% {
+          width: 17px;
+          left: 21px;
+          top: 48px;
+        }
+        to {
+          width: 25px;
+          left: 14px;
+          top: 45px;
+        }
+      }
+      @keyframes animateSuccessTip {
+        0% {
+          width: 0;
+          left: 1px;
+          top: 19px;
+        }
+        54% {
+          width: 0;
+          left: 1px;
+          top: 19px;
+        }
+        70% {
+          width: 50px;
+          left: -8px;
+          top: 37px;
+        }
+        84% {
+          width: 17px;
+          left: 21px;
+          top: 48px;
+        }
+        to {
+          width: 25px;
+          left: 14px;
+          top: 45px;
+        }
+      }
+      @-webkit-keyframes animateSuccessLong {
+        0% {
+          width: 0;
+          right: 46px;
+          top: 54px;
+        }
+        65% {
+          width: 0;
+          right: 46px;
+          top: 54px;
+        }
+        84% {
+          width: 55px;
+          right: 0;
+          top: 35px;
+        }
+        to {
+          width: 47px;
+          right: 8px;
+          top: 38px;
+        }
+      }
+      @keyframes animateSuccessLong {
+        0% {
+          width: 0;
+          right: 46px;
+          top: 54px;
+        }
+        65% {
+          width: 0;
+          right: 46px;
+          top: 54px;
+        }
+        84% {
+          width: 55px;
+          right: 0;
+          top: 35px;
+        }
+        to {
+          width: 47px;
+          right: 8px;
+          top: 38px;
+        }
+      }
+      .swal-icon--info {
+        border-color: #c9dae1;
+      }
+      .swal-icon--info:before {
+        width: 5px;
+        height: 29px;
+        bottom: 17px;
+        border-radius: 2px;
+        margin-left: -2px;
+      }
+      .swal-icon--info:after,
+      .swal-icon--info:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        background-color: #c9dae1;
+      }
+      .swal-icon--info:after {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        margin-left: -3px;
+        top: 19px;
+      }
+      .swal-icon {
+        width: 80px;
+        height: 80px;
+        border-width: 4px;
+        border-style: solid;
+        border-radius: 50%;
+        padding: 0;
+        position: relative;
+        box-sizing: content-box;
+        margin: 20px auto;
+      }
+      .swal-icon:first-child {
+        margin-top: 32px;
+      }
+      .swal-icon--custom {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        border: none;
+        border-radius: 0;
+      }
+      .swal-icon img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+      .swal-title {
+        color: rgba(0, 0, 0, 0.65);
+        font-weight: 600;
+        text-transform: none;
+        position: relative;
+        display: block;
+        padding: 13px 16px;
+        font-size: 27px;
+        line-height: normal;
+        text-align: center;
+        margin-bottom: 0;
+      }
+      .swal-title:first-child {
+        margin-top: 26px;
+      }
+      .swal-title:not(:first-child) {
+        padding-bottom: 0;
+      }
+      .swal-title:not(:last-child) {
+        margin-bottom: 13px;
+      }
+      .swal-text {
+        font-size: 16px;
+        position: relative;
+        float: none;
+        line-height: normal;
+        vertical-align: top;
+        text-align: left;
+        display: inline-block;
+        margin: 0;
+        padding: 0 10px;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.64);
+        max-width: calc(100% - 20px);
+        overflow-wrap: break-word;
+        box-sizing: border-box;
+      }
+      .swal-text:first-child {
+        margin-top: 45px;
+      }
+      .swal-text:last-child {
+        margin-bottom: 45px;
+      }
+      .swal-footer {
+        text-align: right;
+        padding-top: 13px;
+        margin-top: 13px;
+        padding: 13px 16px;
+        border-radius: inherit;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+      .swal-button-container {
+        margin: 5px;
+        display: inline-block;
+        position: relative;
+      }
+      .swal-button {
+        background-color: #7cd1f9;
+        color: #fff;
+        border: none;
+        box-shadow: none;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 10px 24px;
+        margin: 0;
+        cursor: pointer;
+      }
+      .swal-button:not([disabled]):hover {
+        background-color: #78cbf2;
+      }
+      .swal-button:active {
+        background-color: #70bce0;
+      }
+      .swal-button:focus {
+        outline: none;
+        box-shadow: 0 0 0 1px #fff, 0 0 0 3px rgba(43, 114, 165, 0.29);
+      }
+      .swal-button[disabled] {
+        opacity: 0.5;
+        cursor: default;
+      }
+      .swal-button::-moz-focus-inner {
+        border: 0;
+      }
+      .swal-button--cancel {
+        color: #555;
+        background-color: #efefef;
+      }
+      .swal-button--cancel:not([disabled]):hover {
+        background-color: #e8e8e8;
+      }
+      .swal-button--cancel:active {
+        background-color: #d7d7d7;
+      }
+      .swal-button--cancel:focus {
+        box-shadow: 0 0 0 1px #fff, 0 0 0 3px rgba(116, 136, 150, 0.29);
+      }
+      .swal-button--danger {
+        background-color: #e64942;
+      }
+      .swal-button--danger:not([disabled]):hover {
+        background-color: #df4740;
+      }
+      .swal-button--danger:active {
+        background-color: #cf423b;
+      }
+      .swal-button--danger:focus {
+        box-shadow: 0 0 0 1px #fff, 0 0 0 3px rgba(165, 43, 43, 0.29);
+      }
+      .swal-content {
+        padding: 0 20px;
+        margin-top: 20px;
+        font-size: medium;
+      }
+      .swal-content:last-child {
+        margin-bottom: 20px;
+      }
+      .swal-content__input,
+      .swal-content__textarea {
+        -webkit-appearance: none;
+        background-color: #fff;
+        border: none;
+        font-size: 14px;
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        border: 1px solid rgba(0, 0, 0, 0.14);
+        padding: 10px 13px;
+        border-radius: 2px;
+        transition: border-color 0.2s;
+      }
+      .swal-content__input:focus,
+      .swal-content__textarea:focus {
+        outline: none;
+        border-color: #6db8ff;
+      }
+      .swal-content__textarea {
+        resize: vertical;
+      }
+      .swal-button--loading {
+        color: transparent;
+      }
+      .swal-button--loading ~ .swal-button__loader {
+        opacity: 1;
+      }
+      .swal-button__loader {
+        position: absolute;
+        height: auto;
+        width: 43px;
+        z-index: 2;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        text-align: center;
+        pointer-events: none;
+        opacity: 0;
+      }
+      .swal-button__loader div {
+        display: inline-block;
+        float: none;
+        vertical-align: baseline;
+        width: 9px;
+        height: 9px;
+        padding: 0;
+        border: none;
+        margin: 2px;
+        opacity: 0.4;
+        border-radius: 7px;
+        background-color: hsla(0, 0%, 100%, 0.9);
+        transition: background 0.2s;
+        -webkit-animation: swal-loading-anim 1s infinite;
+        animation: swal-loading-anim 1s infinite;
+      }
+      .swal-button__loader div:nth-child(3n + 2) {
+        -webkit-animation-delay: 0.15s;
+        animation-delay: 0.15s;
+      }
+      .swal-button__loader div:nth-child(3n + 3) {
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+      }
+      @-webkit-keyframes swal-loading-anim {
+        0% {
+          opacity: 0.4;
+        }
+        20% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+        to {
+          opacity: 0.4;
+        }
+      }
+      @keyframes swal-loading-anim {
+        0% {
+          opacity: 0.4;
+        }
+        20% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 1;
+        }
+        to {
+          opacity: 0.4;
+        }
+      }
+      .swal-overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 0;
+        overflow-y: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 10000;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .swal-overlay:before {
+        content: " ";
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+      }
+      .swal-overlay--show-modal {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .swal-overlay--show-modal .swal-modal {
+        opacity: 1;
+        pointer-events: auto;
+        box-sizing: border-box;
+        -webkit-animation: showSweetAlert 0.3s;
+        animation: showSweetAlert 0.3s;
+        will-change: transform;
+      }
+      .swal-modal {
+        width: 478px;
+        opacity: 0;
+        pointer-events: none;
+        background-color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        position: static;
+        margin: 20px auto;
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        z-index: 10001;
+        transition: opacity 0.2s, -webkit-transform 0.3s;
+        transition: transform 0.3s, opacity 0.2s;
+        transition: transform 0.3s, opacity 0.2s, -webkit-transform 0.3s;
+      }
+      @media (max-width: 500px) {
+        .swal-modal {
+          width: calc(100% - 20px);
+        }
+      }
+      @-webkit-keyframes showSweetAlert {
+        0% {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+        }
+        1% {
+          -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+        }
+        45% {
+          -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+        }
+        80% {
+          -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+        }
+        to {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+        }
+      }
+      @keyframes showSweetAlert {
+        0% {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+        }
+        1% {
+          -webkit-transform: scale(0.5);
+          transform: scale(0.5);
+        }
+        45% {
+          -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+        }
+        80% {
+          -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+        }
+        to {
+          -webkit-transform: scale(1);
+          transform: scale(1);
+        }
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<style>
-  #qrcode {
-  width:120px;
-  height:120px;
-  
-}
-</style>
+    <!-- <link rel="shortcut icon" type="image/png" href="/imgs/favicon.png" /> -->
+    <title>Home</title>
+    <link rel="icon" type="image/png" href="/images/emandi-icon.png" />
+    <!-- inject:css -->
 
-<div id="qrcode"></div>
+    <link
+      rel="stylesheet"
+      href="/bower_components/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/bower_components/font-awesome/css/font-awesome.min.css"
+    />
 
+    <link href="/lib/jquery_ui/jquery-ui.css" rel="stylesheet" />
+    <!-- endinject -->
+    <!-- Main Style  -->
+    <link rel="stylesheet" href="/css/main.css" />
 
-<script type="text/javascript">
-  var qrcode = new QRCode(document.getElementById("qrcode"), {
-    text: "Gatepass no:17121983(75)/GP/00085,Issue from:VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH,Crop:?PADDY,Weight:239.150,Vehical no:UP82T3815,applicationnumber:22318548InstrumentType:Gatepass,http://emandi.up.gov.in/",
-  
- 
-    colorDark : "#000000",
-    colorLight : "#ffffff",
-    correctLevel : QRCode.CorrectLevel.L
-  });
-  </script>
+    <!-- Rickshaw Chart Depencencies -->
+    <link rel="stylesheet" href="/bower_components/rickshaw/rickshaw.min.css" />
+    <!--Data Table-->
+    <link
+      href="/bower_components/datatables/media/css/jquery.dataTables.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/bower_components/datatables-tabletools/css/dataTables.tableTools.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/bower_components/datatables-colvis/css/dataTables.colVis.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/bower_components/datatables-responsive/css/responsive.dataTables.scss"
+      rel="stylesheet"
+    />
+    <link
+      href="/bower_components/datatables-scroller/css/scroller.dataTables.scss"
+      rel="stylesheet"
+    />
 
-  <!-- <script type="text/javascript">
+    <link href="/SweetAlert/Sweetalert.css" rel="stylesheet" />
+    <link href="/lib/select2/select2.min.css" rel="stylesheet" />
+    <script src="/js/modernizr-custom.js"></script>
+    <link href="/css/CommonCss.css" rel="stylesheet" />
 
+    <style type="text/css">
+      #progressBackgroundFilter {
+        position: fixed;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        background-color: #000;
+        filter: alpha(opacity=50);
+        opacity: 0.5;
+        z-index: 1000;
+      }
 
-   
-var qrcode = new QRCode("qrcode");
+      #processMessage {
+        position: fixed;
+        top: 30%;
+        left: 43%;
+        padding: 10px;
+        width: 14%;
+        z-index: 1001;
+        background-color: #fff;
+        border: solid 1px #000;
+        text-align: center;
+      }
 
-	
-	var elText = "Gatepass no:17121983(75)/GP/00085,Issue from:VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH,Crop:?PADDY,Weight:239.150,Vehical no:UP82T3815,applicationnumber:22318548InstrumentType:Gatepass,http://emandi.up.gov.in/"
-	
-//	qrcode.makeCode(elText.value);
+      .modalBackground {
+        background-color: Gray;
+        filter: alpha(opacity=80);
+        opacity: 0.8;
+        z-index: 10000;
+      }
+    </style>
 
+    <style type="text/css">
+      .jqstooltip {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        visibility: hidden;
+        background: rgb(0, 0, 0) transparent;
+        background-color: rgba(0, 0, 0, 0.6);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+        color: white;
+        font: 10px arial, san serif;
+        text-align: left;
+        white-space: nowrap;
+        padding: 5px;
+        border: 1px solid white;
+        z-index: 10000;
+      }
+      .jqsfield {
+        color: white;
+        font: 10px arial, san serif;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body oncontextmenu="return false;">
+    <div id="loader" style="display: none" align="center">
+      <div id="progressBackgroundFilter"></div>
+      <div id="processMessage">
+        <span>Please Wait...</span>
+        <img alt="Loading" src="/images/please_wait.gif" />
+      </div>
+    </div>
+    <div id="ui" class="ui">
+      <input type="hidden" value="VIRESH CHANDRA GUPTA" id="username" />
+      <!--header start-->
+      <style>
+        .info > li {
+          margin-right: 5px;
+        }
+      </style>
+      <header id="header" class="ui-header">
+        <div class="navbar-header">
+          <!--logo start-->
+          <a href="/" class="navbar-brand">
+            <span class="logo"
+              ><img src="/images/emandi-logo.png" alt=""
+            /></span>
+            <span class="logo-compact"><img src="/images/" alt="" /></span>
+          </a>
+          <!--logo end-->
+        </div>
 
+        <div class="navbar-collapse nav-responsive-disabled">
+          <!--toggle buttons start-->
+          <ul class="nav navbar-nav">
+            <li>
+              <a class="toggle-btn" data-toggle="ui-nav" href="#">
+                <i class="fa fa-bars"></i>
+              </a>
+            </li>
+            <li class="">
+              <a href="#"><b>Last Login: 26/02/2022 22:12:02</b></a>
+            </li>
+          </ul>
 
+          <!--notification start-->
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/Account/ChangePassword" title="Change Password">
+                <i class="fa fa-gears"></i> Change Password
+              </a>
+            </li>
+            <li class="dropdown dropdown-usermenu">
+              <a href="#" id="logOut">
+                <i class="fa fa-sign-out"></i>
+                Logout
+              </a>
+            </li>
+          </ul>
+          <!--notification end-->
+        </div>
+      </header>
+      <!--header end-->
+      <!--sidebar start-->
 
-  </Script> -->
-</div>
+      <aside id="aside" class="ui-aside">
+        <ul class="nav" ui-nav="">
+          <li class="active">
+            <a href="/Traders/Dashboard">
+              <i class="fa fa-home"></i><span> व्यापारी डैशबोर्ड </span>
+            </a>
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="/Traders/Dashboard"><span> व्यापारी डैशबोर्ड</span></a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/Traders/add_six_r"
+              ><i class="fa fa-envelope-o"></i
+              ><span>प्रपत्र-6 जारी करें </span></a
+            >
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="/Traders/add_six_r"
+                  ><span>प्रपत्र-6 जारी करें</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/Traders/add_nine_r">
+              <i class="fa fa-file-text-o"></i
+              ><span> प्रपत्र-9 जारी करें </span>
+            </a>
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="/Traders/add_nine_r"
+                  ><span>प्रपत्र-9 जारी करें</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/Traders/add_nine_r_two">
+              <i class="fa fa-file-text-o"></i
+              ><span> प्रपत्र-9-2 जारी करें </span>
+            </a>
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="/Traders/add_nine_r_two"
+                  ><span>प्रपत्र-9-2 जारी करें</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/Traders/add_gatepass">
+              <i class="fa fa-bar-chart-o"></i><span>गेटपास आवेदन करें</span>
+            </a>
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="/Traders/add_gatepass"
+                  ><span>गेटपास आवेदन करें</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/Stock"
+              ><i class="fa fa-snowflake-o"></i><span>Stock Register</span></a
+            >
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="/Stock"><span>Stock Register</span></a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/Stock/categorywisestock"
+              ><i class="fa fa-snowflake-o"></i
+              ><span>Stock Register (Primary/Secondary Wise)</span></a
+            >
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="/Stock/categorywisestock"
+                  ><span>Stock Register (Primary/Secondary Wise)</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/Miller"
+              ><i class="fa fa-th-large"></i><span>प्रसंस्करण हेतु</span></a
+            >
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="/Miller"><span>प्रसंस्करण हेतु</span></a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/LicenseConversion"
+              ><i class="fa fa-th-large"></i
+              ><span>लाइसेंस परिवर्तन हेतु</span></a
+            >
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="/LicenseConversion"
+                  ><span>लाइसेंस परिवर्तन हेतु</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-file-text-o"></i><span>निर्यातक मॉड्यूल</span>
+              <i class="fa fa-angle-right pull-right"></i>
+            </a>
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="#"><span>निर्यातक मॉड्यूल</span></a>
+              </li>
+              <li>
+                <a href="/Exporter">
+                  <span> आवेदन करें </span>
+                </a>
+              </li>
+              <li>
+                <a href="/Exporter/list"><span>आवेदन सूची</span></a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/Traders/DCDashboard">
+              <i class="fa fa-wpforms"></i><span>डिमांड और कलेक्शन </span>
+            </a>
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="/Traders/DCDashboard"
+                  ><span>डिमांड और कलेक्शन </span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/TraderDSC/Index"
+              ><i class="fa fa-file-text-o"></i><span>रजिस्टर DSC </span></a
+            >
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="/TraderDSC/Index"><span>रजिस्टर DSC</span></a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/Home/UnderConstructions"
+              ><i class="fa fa-file-text-o"></i><span>44 'अ' रिपोर्ट </span></a
+            >
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="/Home/UnderConstructions"
+                  ><span>44 'अ' रिपोर्ट</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/Home/UnderConstructions"
+              ><i class="fa fa-file-text-o"></i><span>44 'ब' रिपोर्ट </span></a
+            >
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="/Home/UnderConstructions"
+                  ><span>44 'ब' रिपोर्ट</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-certificate"></i><span>रिपोर्ट</span>
+              <i class="fa fa-angle-right pull-right"></i>
+            </a>
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="#"><span>रिपोर्ट</span></a>
+              </li>
+              <li>
+                <a href="/traders/generated_es"
+                  ><span>जारी बाह्य प्रवेश पर्ची</span></a
+                >
+              </li>
+              <li>
+                <a href="/traders/generated_6R"><span>जारी 6R</span></a>
+              </li>
+              <li>
+                <a href="/traders/generated_9R"><span>जारी 9R</span></a>
+              </li>
+              <li>
+                <a href="/traders/generated_9R2"><span>जारी 9R(2)</span></a>
+              </li>
+              <li>
+                <a href="/traders/generated_gatepass"
+                  ><span>जारी गेटपास</span></a
+                >
+              </li>
+              <li>
+                <a href="/miller/mill_list"><span>जारी प्रसंस्करण </span></a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-certificate"></i><span>संशोधित करें</span>
+              <i class="fa fa-angle-right pull-right"></i>
+            </a>
+            <ul class="nav nav-sub">
+              <li class="nav-sub-header">
+                <a href="#"><span>संशोधित करें</span></a>
+              </li>
+
+              <li>
+                <a href="/six_r/list"><span>प्रपत्र-6</span></a>
+              </li>
+            </ul>
+          </li>
+          <li></li>
+          <li></li>
+        </ul>
+      </aside>
+      <!--sidebar end-->
+      <!--main content start-->
+      <div id="content" class="ui-content ui-content-aside-overlay">
+        <div class="ui-container">
+          <!--page header start-->
+          <div class="page-head-wrap">
+            <h4 class="margin0">कृषि उत्पादन मंडी समिति</h4>
+            <div class="breadcrumb-right">
+              <ol class="breadcrumb">
+                <li>
+                  <a href="/Traders/generated_9R" style="margin-top: -10px"
+                    ><button class="btn btn-primary">
+                      जारी हो चुके प्रपत्र-9
+                    </button></a
+                  >
+                </li>
+              </ol>
+            </div>
+          </div>
+          <!--page header end-->
+          <div class="ui-content-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel">
+                  <div class="panel-body border-purple">
+                    <form
+                      id="form1"
+                      autocomplete="off"
+                      action="/Traders/add_nine_r"
+                      method="post"
+                      novalidate="novalidate"
+                    >
+                      <fieldset>
+                        <legend>
+                          (प्रपत्र-9)<br />
+                          [नियम 76(12) देखिये]<br />
+                          विक्रेता के लिए वाउचर<br />
+                          (केवल पहली पहुँच के विक्रय के लिए)
+                          <span
+                            class="errorMessage pull-right"
+                            style="font-size: 13px"
+                            >(*) अनिवार्य</span
+                          >
+                        </legend>
+
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>पुस्तक संख्या</label>
+                              <input
+                                type="text"
+                                class="form-control fixed-input"
+                                id="seq_number"
+                                readonly=""
+                                data-val="true"
+                                data-val-regex="Not Allowed"
+                                data-val-regex-pattern="^[0-9]+$"
+                                data-val-required="पुस्तक संख्या रिक्त नहीं हो सकता।"
+                                name="book_number"
+                                value="17121983"
+                              />
+                              <span
+                                class="errorMessage field-validation-valid"
+                                data-valmsg-for="book_number"
+                                data-valmsg-replace="true"
+                              ></span>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>क्रम संख्या</label>
+                              <input
+                                type="text"
+                                class="form-control fixed-input"
+                                id="transaction_number"
+                                readonly=""
+                                autocomplete="off"
+                                data-val="true"
+                                data-val-length="MaxLength 50 character."
+                                data-val-length-max="50"
+                                data-val-length-min="7"
+                                data-val-required="क्रम संख्या रिक्त नहीं हो सकता।"
+                                maxlength="50"
+                                name="serial_number"
+                                value="17121983(75)/9/00219"
+                              />
+                              <span
+                                class="errorMessage field-validation-valid"
+                                data-valmsg-for="serial_number"
+                                data-valmsg-replace="true"
+                              ></span>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>मंडी</label>
+                              <input
+                                type="text"
+                                class="form-control fixed-input"
+                                id="mandi_name"
+                                readonly=""
+                                name="mandi_name"
+                                value="एटा"
+                              />
+                              <input
+                                type="hidden"
+                                id="mandi_code"
+                                name="mandi_code"
+                                value="75"
+                              />
+                              <span
+                                class="errorMessage field-validation-valid"
+                                data-valmsg-for="mandi_name"
+                                data-valmsg-replace="true"
+                              ></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>लाइसेंस संख्या</label>
+                              <input
+                                type="text"
+                                class="form-control fixed-input"
+                                readonly=""
+                                id="license_number"
+                                data-val="true"
+                                data-val-length="MaxLength 50 character."
+                                data-val-length-max="50"
+                                data-val-length-min="7"
+                                data-val-required="लाइसेंस संख्या दर्ज करें"
+                                maxlength="50"
+                                name="trader_license_number"
+                                value="L/2016/75/17121983"
+                              />
+                              <span
+                                class="errorMessage field-validation-valid"
+                                data-valmsg-for="trader_license_number"
+                                data-valmsg-replace="true"
+                              ></span>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>विक्रेता फर्म का नाम व जिला</label>
+                              <input
+                                type="text"
+                                class="form-control col-lg-8 fixed-input"
+                                id="vikreta_details"
+                                placeholder="विक्रेता का नाम और पूरा पता"
+                                readonly=""
+                                data-val="true"
+                                data-val-length="MaxLength 150 character."
+                                data-val-length-max="150"
+                                data-val-length-min="1"
+                                data-val-required="विक्रेता विवरण भरें |"
+                                maxlength="150"
+                                name="vikreta_details"
+                                value="VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH"
+                              />
+                              <span
+                                class="errorMessage field-validation-valid"
+                                data-valmsg-for="vikreta_details"
+                                data-valmsg-replace="true"
+                              ></span>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>व्यापारी का नाम</label>
+                              <input
+                                type="text"
+                                class="form-control fixed-input"
+                                readonly=""
+                                id="trader_name"
+                                data-val="true"
+                                data-val-length="MaxLength 500 character."
+                                data-val-length-max="500"
+                                data-val-required="आढ़तिया / व्यापारी के फर्म का नाम रिक्त नहीं हो सकता।"
+                                maxlength="500"
+                                name="trader_name"
+                                value="VIRESH CHANDRA GUPTA"
+                              />
+                              <span
+                                class="errorMessage field-validation-valid"
+                                data-valmsg-for="trader_name"
+                                data-valmsg-replace="true"
+                              ></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label
+                                >मंडी क्षेत्र में प्रधान स्थल/उप मंडी
+                                स्थल/विक्रय स्थल का नाम<span
+                                  class="errorMessage"
+                                  >*</span
+                                ></label
+                              >
+                              <input
+                                type="text"
+                                class="form-control unicode"
+                                id="trade_mandi"
+                                placeholder=" प्रधान स्थल/उप मंडी स्थल/विक्रय स्थल का नाम"
+                                autocomplete="off"
+                                onchange="ErrorChange(this);"
+                                data-val="true"
+                                data-val-length="MaxLength 50 character."
+                                data-val-length-max="500"
+                                data-val-required="प्रधान स्थल/उप मंडी स्थल/विक्रय स्थल दर्ज करें |"
+                                maxlength="500"
+                                name="trade_mandi"
+                                value="Etah Mandi"
+                              />
+                              <span
+                                class="errorMessage field-validation-valid"
+                                data-valmsg-for="trade_mandi"
+                                data-valmsg-replace="true"
+                              ></span>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label
+                                >विक्रय/ नीलाम का दिनांक<span
+                                  class="errorMessage"
+                                  >*</span
+                                ></label
+                              >
+                              <input
+                                type="text"
+                                class="form-control hasDatepicker"
+                                id="datepicker"
+                                placeholder="विक्रय/ नीलाम का दिनांक"
+                                readonly=""
+                                onchange="ErrorChange(this);"
+                                data-val="true"
+                                data-val-length="MaxLength 10 character."
+                                data-val-length-max="10"
+                                data-val-regex="सही तिथि दर्ज करें"
+                                data-val-regex-pattern="(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$"
+                                data-val-required="मंडी मे आगमन की तिथि दर्ज करें"
+                                maxlength="10"
+                                name="dateofissue"
+                                value=""
+                              />
+                              <span
+                                class="errorMessage field-validation-valid"
+                                data-valmsg-for="dateofissue"
+                                data-valmsg-replace="true"
+                              ></span>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label
+                                >क्रेता फर्म/व्यापारी की स्थिति
+                                <span class="errorMessage">*</span></label
+                              >
+                              <br />
+                              <label class="radio-inline i-checks text-center"
+                                ><input
+                                  type="radio"
+                                  id="uttar_pradesh"
+                                  onchange="kreta_state()"
+                                  value="u"
+                                  name="buyer_state"
+                                />
+                                <i></i> <br />उ० प्र० की मंडी <br />का लाईसेंसी
+                                व्यापारी </label
+                              >&nbsp;&nbsp;&nbsp;
+                              <label class="radio-inline i-checks text-center"
+                                ><input
+                                  type="radio"
+                                  value="o"
+                                  onchange="kreta_state()"
+                                  required=""
+                                  id="buyer_state"
+                                  name="buyer_state"
+                                /><i></i> <br />बाह्य प्रदेश/ <br />क्षेत्र का
+                                व्यापारी </label
+                              ><br />
+                              <span
+                                class="errorMessage field-validation-valid"
+                                data-valmsg-for="buyer_state"
+                                data-valmsg-replace="true"
+                              ></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label
+                                >प्रपत्र 9 जारीकर्ता की सौदे में भूमिका<span
+                                  class="errorMessage"
+                                  >*</span
+                                ></label
+                              >
+                              <br />
+
+                              <label class="radio-inline i-checks"
+                                ><input
+                                  type="radio"
+                                  value="t"
+                                  id="ForSelf"
+                                  onchange="tradertype()"
+                                  name="trader_type"
+                                />
+                                <i></i> व्यापारी </label
+                              >&nbsp; &nbsp; &nbsp;
+                              <label class="radio-inline i-checks"
+                                ><input
+                                  type="radio"
+                                  id="br"
+                                  value="d"
+                                  onchange="tradertype()"
+                                  name="trader_type"
+                                /><i></i> आढ़ती
+                              </label>
+                              <br />
+
+                              <span
+                                class="errorMessage field-validation-valid"
+                                data-valmsg-for="trader_type"
+                                data-valmsg-replace="true"
+                              ></span>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>निर्यात विवरण( वैकल्पिक)</label>
+                              <select
+                                class="form-control"
+                                id="ExportType"
+                                name="ExportType"
+                                onchange="tradertype()"
+                              >
+                                <option value="0">For Non Export</option>
+                                <option value="1">For Export</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label
+                                >क्रेता का लाइसेंस संख्या
+                                <span id="opt_lice" style="display: none"
+                                  >(यदि हो तो)</span
+                                ></label
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="kreta_license_no"
+                                placeholder="लाइसेंस संख्या"
+                                onchange="license_detail();"
+                                data-val="true"
+                                data-val-length="MaxLength 50 character."
+                                data-val-length-max="50"
+                                maxlength="50"
+                                name="buyer_license_no"
+                                value=""
+                              />
+                              <span
+                                class="errorMessage field-validation-valid"
+                                data-valmsg-for="buyer_license_no"
+                                data-valmsg-replace="true"
+                              ></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label
+                                >क्रेता फर्म का नाम व जिला<span
+                                  class="errorMessage"
+                                ></span
+                              ></label>
+                              <input
+                                type="text"
+                                class="form-control unicode valid"
+                                id="kreta_details"
+                                placeholder="क्रेता का नाम और पूरा पता"
+                                value=""
+                                autocomplete="off"
+                                onchange="ErrorChange(this);"
+                                data-val="true"
+                                data-val-length="MaxLength 150 character."
+                                data-val-length-max="250"
+                                data-val-length-min="1"
+                                data-val-required="क्रेता विवरण भरें |"
+                                maxlength="250"
+                                name="kreta_details"
+                                aria-describedby="kreta_details-error"
+                                aria-invalid="false"
+                              />
+                              <span
+                                class="errorMessage field-validation-valid"
+                                data-valmsg-for="kreta_details"
+                                data-valmsg-replace="true"
+                              ></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <table
+                              class="table table-bordered"
+                              style="text-align: center"
+                            >
+                              <thead>
+                                <tr>
+                                  <th class="text-center">
+                                    <p>
+                                      कृषि उत्पादन का नाम<span
+                                        class="errorMessage"
+                                        >*</span
+                                      >
+                                    </p>
+                                  </th>
+                                  <th class="text-center">
+                                    <p>
+                                      6-र संख्या<span class="errorMessage"
+                                        >*</span
+                                      >
+                                    </p>
+                                  </th>
+                                  <th class="text-center" style="width: 11%">
+                                    <p>किस्म</p>
+                                  </th>
+                                  <th class="text-center">
+                                    <p>
+                                      तौल/मात्रा/माप<span class="errorMessage"
+                                        >*</span
+                                      >
+                                    </p>
+                                    <span
+                                      style="
+                                        color: black;
+                                        font-size: 13px;
+                                        font-weight: bold;
+                                      "
+                                      >(कुंतल में)</span
+                                    >
+                                  </th>
+                                  <th class="text-center">
+                                    <p>दर<span class="errorMessage">*</span></p>
+                                    <span
+                                      style="
+                                        color: black;
+                                        font-size: 13px;
+                                        font-weight: bold;
+                                      "
+                                      >(प्रति कुंतल)</span
+                                    >
+                                  </th>
+                                  <th class="text-center">
+                                    <p>उत्पादन का मूल्य</p>
+                                    <span
+                                      style="
+                                        color: black;
+                                        font-size: 13px;
+                                        font-weight: bold;
+                                      "
+                                      ><i class="fa fa-rupee"></i
+                                    ></span>
+                                  </th>
+                                  <th class="text-center">
+                                    <p>व्यापारिक परिव्यय</p>
+                                    <span
+                                      style="
+                                        color: black;
+                                        font-size: 13px;
+                                        font-weight: bold;
+                                      "
+                                      ><i class="fa fa-rupee"></i
+                                    ></span>
+                                  </th>
+                                  <th class="text-center">
+                                    <p>कुल धनराशि</p>
+                                    <span
+                                      style="
+                                        color: black;
+                                        font-size: 13px;
+                                        font-weight: bold;
+                                      "
+                                      ><i class="fa fa-rupee"></i
+                                    ></span>
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <select
+                                      class="form-control"
+                                      id="crop_code"
+                                      onchange="get_crop_details();ErrorChangetd(this);"
+                                      data-val="true"
+                                      data-val-required="उत्पाद का चयन करें"
+                                      name="crop_code"
+                                    >
+                                      <option value="">
+                                        ---उत्पाद चुने---
+                                      </option>
+                                      <option value="6">गेहूँ</option>
+                                      <option value="1">धान</option>
+                                      <option value="4">बाजरा</option>
+                                      <option value="5">मक्का</option>
+                                      <option value="21">मूँगफली</option>
+                                      <option value="23">
+                                        लाही तथा सरसो *2
+                                      </option>
+                                    </select>
+                                    <span
+                                      class="errorMessage field-validation-valid"
+                                      data-valmsg-for="crop_code"
+                                      data-valmsg-replace="true"
+                                    ></span>
+                                  </td>
+                                  <td>
+                                    <select
+                                      class="form-control js-example-basic-multiple select2-hidden-accessible"
+                                      id="six_r_id"
+                                      name="six_r_id[]"
+                                      multiple=""
+                                      onchange="get_six_r_details();ErrorChangetd(this);"
+                                      data-val-required="चयन करें"
+                                      style="width: 190px"
+                                      data-select2-id="select2-data-six_r_id"
+                                      tabindex="-1"
+                                      aria-hidden="true"
+                                    ></select
+                                    ><span
+                                      class="select2 select2-container select2-container--default"
+                                      dir="ltr"
+                                      data-select2-id="select2-data-1-bpe5"
+                                      style="width: 190px"
+                                      ><span class="selection"
+                                        ><span
+                                          class="select2-selection select2-selection--multiple"
+                                          role="combobox"
+                                          aria-haspopup="true"
+                                          aria-expanded="false"
+                                          tabindex="-1"
+                                          aria-disabled="false"
+                                          ><ul
+                                            class="select2-selection__rendered"
+                                            id="select2-six_r_id-container"
+                                          ></ul>
+                                          <span
+                                            class="select2-search select2-search--inline"
+                                            ><input
+                                              class="select2-search__field"
+                                              type="search"
+                                              tabindex="0"
+                                              autocorrect="off"
+                                              autocapitalize="none"
+                                              spellcheck="false"
+                                              role="searchbox"
+                                              aria-autocomplete="list"
+                                              autocomplete="off"
+                                              aria-describedby="select2-six_r_id-container"
+                                              placeholder="प्रपत्र चुने "
+                                              style="
+                                                width: 100%;
+                                              " /></span></span></span
+                                      ><span
+                                        class="dropdown-wrapper"
+                                        aria-hidden="true"
+                                      ></span
+                                    ></span>
+                                    <span class="errorMessage"></span>
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      class="form-control unicode"
+                                      id="crop_type"
+                                      onchange="ErrorChangetd(this);"
+                                      data-val="true"
+                                      data-val-length="MaxLength 50 character."
+                                      data-val-length-max="50"
+                                      maxlength="50"
+                                      name="crop_type"
+                                      value=""
+                                    />
+                                    <span
+                                      class="errorMessage field-validation-valid"
+                                      data-valmsg-for="crop_type"
+                                      data-valmsg-replace="true"
+                                    ></span>
+                                  </td>
+                                  <td>
+                                    <input
+                                      style="width: 80px"
+                                      type="number"
+                                      class="small form-control weight"
+                                      id="crop_weight"
+                                      onchange="valid_weight();this.value=parseFloat(this.value).toFixed(3);ErrorChangetd(this);"
+                                      required=""
+                                      data-val="true"
+                                      data-val-length="MaxLength 15 character."
+                                      data-val-length-max="15"
+                                      data-val-range="कृपया सही नंबर भरें|"
+                                      data-val-range-max="3.4028234663852886E+38"
+                                      data-val-range-min="0"
+                                      data-val-required="मात्रा भरें|"
+                                      name="crop_weight"
+                                      value=""
+                                    />
+                                    <span
+                                      class="errorMessage field-validation-valid"
+                                      data-valmsg-for="crop_weight"
+                                      data-valmsg-replace="true"
+                                    ></span>
+                                    <input
+                                      style="width: 80px"
+                                      type="text"
+                                      readonly=""
+                                      class="small form-control fixed-input"
+                                      value="कुंतल"
+                                      id="rate_parameter"
+                                      name="qty_parameter"
+                                    />
+                                  </td>
+                                  <td>
+                                    <input
+                                      style="width: 80px"
+                                      type="number"
+                                      class="form-control"
+                                      min="0.1"
+                                      step=".01"
+                                      id="rate"
+                                      placeholder="दर"
+                                      onchange="this.value=parseFloat(this.value).toFixed(2);valid_cal_fee();ErrorChangetd(this);"
+                                      data-val="true"
+                                      data-val-length="MaxLength 15 character."
+                                      data-val-length-max="15"
+                                      data-val-range="कृपया सही नंबर भरें|"
+                                      data-val-range-max="3.4028234663852886E+38"
+                                      data-val-range-min="0"
+                                      data-val-required="भरें|"
+                                      name="crop_rate"
+                                      value=""
+                                    />
+                                    <span
+                                      class="errorMessage field-validation-valid"
+                                      data-valmsg-for="crop_rate"
+                                      data-valmsg-replace="true"
+                                    ></span>
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      class="form-control fixed-input cal_amt"
+                                      readonly=""
+                                      id="cost"
+                                      placeholder="उत्पादन का मूल्य"
+                                      data-val="true"
+                                      data-val-length="MaxLength 15 character."
+                                      data-val-length-max="15"
+                                      data-val-range="कृपया सही नंबर भरें|"
+                                      data-val-range-max="3.4028234663852886E+38"
+                                      data-val-range-min="0"
+                                      data-val-required="भरें|"
+                                      maxlength="15"
+                                      name="crop_amount"
+                                      value=""
+                                    />
+                                  </td>
+                                  <td style="width: 12%">
+                                    <table>
+                                      <tbody>
+                                        <tr>
+                                          <td
+                                            style="
+                                              text-align: left;
+                                              padding: 2px;
+                                            "
+                                          >
+                                            मंडी शुल्क
+                                            <input
+                                              id="mandi_shulk"
+                                              style="width: 42px; float: right"
+                                              readonly=""
+                                              class="form-control"
+                                              type="text"
+                                              name="mandi_fee"
+                                              value=""
+                                            />%
+                                            <input
+                                              type="number"
+                                              step="0.01"
+                                              min="0.00"
+                                              class="form-control fixed-input cal_amt"
+                                              placeholder="00"
+                                              readonly=""
+                                              id="calculate_shulk"
+                                              onchange="this.value=parseFloat(this.value).toFixed(2);get_crop_rate1();"
+                                              name="cal_mandi_fee"
+                                            />
+                                            <span
+                                              class="errorMessage field-validation-valid"
+                                              data-valmsg-for="mandi_fee"
+                                              data-valmsg-replace="true"
+                                            ></span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            style="
+                                              text-align: left;
+                                              padding: 2px;
+                                            "
+                                          >
+                                            विकास सेस<input
+                                              id="development"
+                                              class="form-control"
+                                              style="width: 42px; float: right"
+                                              readonly=""
+                                              type="text"
+                                              name="dev_fee"
+                                              value=""
+                                            />%
+                                            <input
+                                              type="number"
+                                              step="0.01"
+                                              min="0.00"
+                                              class="form-control fixed-input cal_amt"
+                                              placeholder="00"
+                                              readonly=""
+                                              id="calculate_development"
+                                              onchange=";this.value=parseFloat(this.value).toFixed(2);get_crop_rate1();"
+                                              name="cal_dev_fee"
+                                            />
+                                            <span
+                                              class="errorMessage field-validation-valid"
+                                              data-valmsg-for="dev_fee"
+                                              data-valmsg-replace="true"
+                                            ></span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            style="
+                                              text-align: left;
+                                              padding: 2px;
+                                            "
+                                          >
+                                            तौलाई
+                                            <input
+                                              type="number"
+                                              min="0"
+                                              step=".1"
+                                              max="100"
+                                              class=""
+                                              id="mandi_rate5"
+                                              autocomplete="off"
+                                              style="width: 42px; float: right"
+                                              value="1"
+                                              onchange="get_crop_rate1();"
+                                              name="weighing_fee"
+                                            />
+                                            <input
+                                              type="number"
+                                              class="form-control fixed-input cal_amt"
+                                              placeholder="00"
+                                              readonly=""
+                                              id="calculate_rate5"
+                                            />
+                                            <span
+                                              class="errorMessage field-validation-valid"
+                                              data-valmsg-for="weighing_fee"
+                                              data-valmsg-replace="true"
+                                            ></span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            style="
+                                              text-align: left;
+                                              padding: 2px;
+                                            "
+                                          >
+                                            दलाली
+                                            <input
+                                              type="number"
+                                              min="0"
+                                              step=".1"
+                                              max="100"
+                                              class=""
+                                              id="mandi_rate6"
+                                              autocomplete="off"
+                                              style="width: 42px; float: right"
+                                              value="0.5"
+                                              onchange="get_crop_rate1();"
+                                              name="commission_fee"
+                                            />%
+                                            <input
+                                              type="number"
+                                              class="form-control fixed-input cal_amt"
+                                              placeholder="00"
+                                              readonly=""
+                                              id="calculate_rate6"
+                                            />
+                                            <span
+                                              class="errorMessage field-validation-valid"
+                                              data-valmsg-for="commission_fee"
+                                              data-valmsg-replace="true"
+                                            ></span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            style="
+                                              text-align: left;
+                                              padding: 2px;
+                                            "
+                                          >
+                                            पल्लेदारी
+                                            <input
+                                              type="number"
+                                              min="0"
+                                              step=".1"
+                                              max="100"
+                                              class=""
+                                              id="mandi_rate7"
+                                              autocomplete="off"
+                                              style="width: 42px; float: right"
+                                              value="3"
+                                              onchange="get_crop_rate1();"
+                                              name="porter_fee"
+                                            />
+                                            <input
+                                              type="number"
+                                              class="form-control fixed-input cal_amt"
+                                              placeholder="00"
+                                              readonly=""
+                                              id="calculate_rate7"
+                                            />
+                                            <span
+                                              class="errorMessage field-validation-valid"
+                                              data-valmsg-for="porter_fee"
+                                              data-valmsg-replace="true"
+                                            ></span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            style="
+                                              text-align: left;
+                                              padding: 2px;
+                                            "
+                                          >
+                                            टैक्स
+                                            <input
+                                              type="number"
+                                              min="0"
+                                              step="1"
+                                              max="100"
+                                              class=""
+                                              id="mandi_rate8"
+                                              autocomplete="off"
+                                              style="width: 42px; float: right"
+                                              value="18"
+                                              onchange="get_crop_rate1();"
+                                              name="tax"
+                                            />%
+                                            <input
+                                              type="number"
+                                              class="form-control fixed-input cal_amt"
+                                              placeholder="00"
+                                              readonly=""
+                                              id="calculate_rate8"
+                                            />
+                                            <span
+                                              class="errorMessage field-validation-valid"
+                                              data-valmsg-for="tax"
+                                              data-valmsg-replace="true"
+                                            ></span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            style="
+                                              text-align: left;
+                                              padding: 2px;
+                                            "
+                                          >
+                                            आढ़त
+                                            <input
+                                              type="number"
+                                              min="0"
+                                              step="0.1"
+                                              max="100"
+                                              class=""
+                                              id="mandi_rate9"
+                                              autocomplete="off"
+                                              style="width: 42px; float: right"
+                                              value="0"
+                                              onchange="get_crop_rate1();"
+                                              name="agent_fee"
+                                            />%
+
+                                            <input
+                                              type="number"
+                                              class="form-control fixed-input cal_amt"
+                                              placeholder="00"
+                                              readonly=""
+                                              id="calculate_rate9"
+                                            />
+                                            <span
+                                              class="errorMessage field-validation-valid"
+                                              data-valmsg-for="agent_fee"
+                                              data-valmsg-replace="true"
+                                            ></span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            style="
+                                              text-align: left;
+                                              padding: 2px;
+                                            "
+                                          >
+                                            अन्य व्यय<input
+                                              type="number"
+                                              min="0"
+                                              step="1"
+                                              max="100"
+                                              class=""
+                                              id="others"
+                                              autocomplete="off"
+                                              style="width: 42px; float: right"
+                                              value="0"
+                                              onchange="get_crop_rate1();"
+                                              name="other_fee"
+                                            />%
+                                            <input
+                                              type="number"
+                                              class="form-control fixed-input cal_amt"
+                                              placeholder="00"
+                                              readonly=""
+                                              id="calculate_rate1"
+                                            />
+                                            <span
+                                              class="errorMessage field-validation-valid"
+                                              data-valmsg-for="other_fee"
+                                              data-valmsg-replace="true"
+                                            ></span>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            style="
+                                              text-align: left;
+                                              padding: 2px;
+                                            "
+                                          >
+                                            योग
+                                            <input
+                                              readonly=""
+                                              class="form-control fixed-input cal_amt"
+                                              id="total"
+                                              type="text"
+                                              data-val="true"
+                                              data-val-length="MaxLength 15 character."
+                                              data-val-length-max="15"
+                                              data-val-range="कृपया सही नंबर भरें|"
+                                              data-val-range-max="3.4028234663852886E+38"
+                                              data-val-range-min="0"
+                                              data-val-required="भरें"
+                                              maxlength="15"
+                                              name="total_tax"
+                                              value=""
+                                            />
+                                            <span
+                                              class="errorMessage field-validation-valid"
+                                              data-valmsg-for="total_tax"
+                                              data-valmsg-replace="true"
+                                            ></span>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      readonly=""
+                                      class="form-control fixed-input cal_amt"
+                                      id="total_amount"
+                                      placeholder="कुल धनराशि"
+                                      name="total_amount"
+                                      value=""
+                                    />
+                                    <span
+                                      class="errorMessage field-validation-valid"
+                                      data-valmsg-for="total_amount"
+                                      data-valmsg-replace="true"
+                                    ></span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="user" class="col-lg-4"
+                                  >कैप्चा भरें<span class="errorMessage"
+                                    >*</span
+                                  ></label
+                                >
+                                <div class="form-group">
+                                  <div style="margin-bottom: 20px" class="">
+                                    <div
+                                      class="dntCaptcha"
+                                      id="dntCaptcha641323c90850be11a0f9f3178ad67575d0923f0d64432729"
+                                    >
+                                      <img
+                                        alt="captcha"
+                                        id="dntCaptchaImg"
+                                        name="dntCaptchaImg"
+                                        src="/DNTCaptchaImage/Show?data=DBPT5yq4XumWQAiSJoiSekv0028GY3dqEL_YbOh1TzsiQJ80Z6qOjya-XFfbBqLSqOWQKfcVqqx29GWx1UzVPg"
+                                        style="margin-bottom: 4px"
+                                      /><a
+                                        class="fa fa-refresh btn-sm"
+                                        data-ajax="true"
+                                        data-ajax-begin="onRefreshButtonDataAjaxBegin"
+                                        data-ajax-method="POST"
+                                        data-ajax-mode="replace-with"
+                                        data-ajax-update="#dntCaptcha641323c90850be11a0f9f3178ad67575d0923f0d64432729"
+                                        data-ajax-url="/DNTCaptchaImage/Refresh?data=fTPxFKyaoFWv9l7NVIu_1JUNTkWR9GGFuFcwh0qbcwuoLc6GoUsOrYLwKDlryV3EZvZsSxR-8w1TvzZB0z6_UA"
+                                        href="#refresh"
+                                        id="dntCaptchaRefreshButton"
+                                        name="dntCaptchaRefreshButton"
+                                      ></a
+                                      ><input
+                                        id="DNTCaptchaText"
+                                        name="DNTCaptchaText"
+                                        type="hidden"
+                                        value="SdH4231JfvE"
+                                      /><span class="input-group-prepend"
+                                        ><span
+                                          class="form-group-text"
+                                        ></span></span
+                                      ><input
+                                        autocomplete="off"
+                                        class="form-control captcha"
+                                        data-required-msg="Please enter the Captcha code."
+                                        data-val="true"
+                                        data-val-required="Please enter the Captcha code."
+                                        dir="ltr"
+                                        id="DNTCaptchaInputText"
+                                        name="DNTCaptchaInputText"
+                                        placeholder="Enter Captcha code"
+                                        required="required"
+                                        type="text"
+                                        value=""
+                                      /><span
+                                        class="errorMessage field-validation-error"
+                                        data-valmsg-for="DNTCaptchaInputText"
+                                        data-valmsg-replace="true"
+                                      ></span
+                                      ><input
+                                        id="DNTCaptchaToken"
+                                        name="DNTCaptchaToken"
+                                        type="hidden"
+                                        value="YB817OCmYnLEkm1z-LtLIGSh44_fepXGP0CRWJcUB8x-Gnx4XSHVjMRRA6eGC615qq0Ns2EIcTWttLLk6xS3kA"
+                                      />
+                                      <script type="text/javascript">
+                                        function onRefreshButtonDataAjaxBegin(
+                                          xhr,
+                                          settings
+                                        ) {
+                                          settings.data =
+                                            settings.data +
+                                            "&__RequestVerificationToken=CfDJ8DLo1VA-5zNGm4jwTElrfDzy1kge58WJq28aLmC5lAJpJORFmYqG4PdQWxK2AW0Wh9JsD7Q1aVMfTUeGJLvI42hVtWrMMOTPAyZrLBJxs0U6C8Ulz-ysBp0muJ_SCE4UAQ5O0nMXWwpWdhtMLHl3M4S3x3FN3tRictV5OjDJrPnbsm40ol4kaukyCm73v49T_Q";
+                                        }
+                                      </script>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row text-center">
+                          <input
+                            name="Submit"
+                            id="submitpreview"
+                            type="button"
+                            value="संरक्षित करें"
+                            class="btn btn-success"
+                            onclick="preview_data()"
+                          />
+                          <button type="reset" class="btn btn-info">
+                            Reset
+                          </button>
+                        </div>
+                      </fieldset>
+
+                      <div
+                        class="modal fade"
+                        id="ModalCenter"
+                        tabindex="-1"
+                        role="dialog"
+                        aria-labelledby="ModalCenterTitle"
+                        aria-hidden="true"
+                      >
+                        <div
+                          class="modal-dialog modal-dialog-centered modal-dialog-custom"
+                          role="document"
+                        >
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              प्रपत्र-9
+                              <br />
+                              विक्रेता के लिए वाउचर <br />(केवल पहली पहुँच के
+                              विक्रय के लिए)
+
+                              <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                              >
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <p>पुस्तक संख्या</p>
+
+                                    <label id="book_no"></label>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <p for="exampleInputPassword1">
+                                      क्रम संख्या
+                                    </p>
+                                    <label id="serial_no"></label>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <p for="exampleInputFile">
+                                      विक्रय/ नीलाम का दिनांक
+                                    </p>
+                                    <label id="curr_date"></label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <p>मंडी</p>
+                                    <label id="mandi"></label>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <p for="exampleInputPassword1">
+                                      मंडी क्षेत्र में प्रधान स्थल/उप मंडी
+                                      स्थल/विक्रय स्थल का नाम
+                                    </p>
+                                    <label id="mandi_trade"></label>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <p for="exampleInputFile">लाइसेंस संख्या</p>
+                                    <label id="license_no"></label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <p for="exampleInputPassword1">
+                                      विक्रेता फर्म का नाम व जिला
+                                    </p>
+
+                                    <label id="s_name"></label>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <p>आढ़तिया / व्यापारी का नाम</p>
+                                    <label id="t_name"></label>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <p>क्रेता फर्म का राज्य</p>
+                                    <label id="b_state"></label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <p>व्यापारी प्रकार</p>
+                                    <label id="tradertype"></label>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <p>क्रेता का लाइसेंस संख्या</p>
+                                    <label id="b_license_no"></label>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <p>क्रेता फर्म का नाम व जिला</p>
+                                    <label id="b_name"></label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <p for="exampleInputPassword1">
+                                      निर्यात हेतु
+                                    </p>
+                                    <label id="etype"></label>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <table
+                                    class="table table-bordered table-sortable"
+                                    id="tab_logic"
+                                  >
+                                    <thead class="bg-dark">
+                                      <tr>
+                                        <th class="text-center">
+                                          <p
+                                            style="
+                                              color: black;
+                                              font-size: 13px;
+                                            "
+                                          >
+                                            कृषि उत्पादन का नाम
+                                          </p>
+                                        </th>
+                                        <th class="text-center">
+                                          <p
+                                            style="
+                                              color: black;
+                                              font-size: 13px;
+                                            "
+                                          >
+                                            किस्म
+                                          </p>
+                                        </th>
+                                        <th class="text-center">
+                                          <p
+                                            style="
+                                              color: black;
+                                              font-size: 13px;
+                                              width: 40px;
+                                            "
+                                          >
+                                            तौल / मात्रा / माप
+                                          </p>
+                                        </th>
+                                        <th class="text-center">
+                                          <p
+                                            style="
+                                              color: black;
+                                              font-size: 13px;
+                                            "
+                                          >
+                                            दर
+                                          </p>
+                                        </th>
+                                        <th class="text-center">
+                                          <p
+                                            style="
+                                              color: black;
+                                              font-size: 13px;
+                                              width: 75px;
+                                            "
+                                          >
+                                            विक्रेता को भुगतान की गयी शुद्ध
+                                            धनराशि
+                                          </p>
+                                        </th>
+                                        <th class="text-center">
+                                          <p
+                                            style="
+                                              color: black;
+                                              font-size: 13px;
+                                            "
+                                          >
+                                            व्यापारिक परिव्यय
+                                          </p>
+                                        </th>
+                                        <th class="text-center">
+                                          <p
+                                            style="
+                                              color: black;
+                                              font-size: 13px;
+                                            "
+                                          >
+                                            कुल धनराशि <br /><i
+                                              class="fa fa-rupee fa"
+                                              aria-hidden="true"
+                                            ></i>
+                                          </p>
+                                        </th>
+                                        <th class="text-center">
+                                          <p
+                                            style="
+                                              color: black;
+                                              font-size: 13px;
+                                            "
+                                          >
+                                            अभियुक्ति
+                                          </p>
+                                        </th>
+                                      </tr>
+                                    </thead>
+                                    <tbody class="ui-sortable" style="">
+                                      <tr class="ui-sortable-handle" style="">
+                                        <td
+                                          style="text-align: center"
+                                          id="crop_name"
+                                        ></td>
+                                        <td
+                                          style="text-align: center"
+                                          id="type_crop"
+                                        ></td>
+                                        <td
+                                          id="weight_crop"
+                                          style="text-align: center"
+                                        ></td>
+                                        <td
+                                          id="rate_crop"
+                                          style="text-align: center"
+                                        ></td>
+                                        <td
+                                          id="amount_crop"
+                                          style="text-align: center"
+                                        ></td>
+                                        <td
+                                          id="total_fee"
+                                          style="text-align: center"
+                                        ></td>
+                                        <td
+                                          id="amt_total"
+                                          style="text-align: center"
+                                        ></td>
+                                        <td id="additional"></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="modal-footer text-center">
+                              <input
+                                type="button"
+                                class="btn btn-danger"
+                                data-dismiss="modal"
+                                value="कैंसिल करें"
+                              />
+                              <a
+                                class="btn btn-primary"
+                                id="submitbtn"
+                                onclick="submitDetailsForm();"
+                                >जारी करें
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <input
+                        name="__RequestVerificationToken"
+                        type="hidden"
+                        value="CfDJ8DLo1VA-5zNGm4jwTElrfDzy1kge58WJq28aLmC5lAJpJORFmYqG4PdQWxK2AW0Wh9JsD7Q1aVMfTUeGJLvI42hVtWrMMOTPAyZrLBJxs0U6C8Ulz-ysBp0muJ_SCE4UAQ5O0nMXWwpWdhtMLHl3M4S3x3FN3tRictV5OjDJrPnbsm40ol4kaukyCm73v49T_Q"
+                      />
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--main content end-->
+      <!--footer start-->
+
+      <div id="footer" class="ui-footer">2022 © EMandi.</div>
+      <!--footer end-->
+    </div>
+
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <script src="/lib/select2/select2.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
+    <script src="/bower_components/autosize/dist/autosize.min.js"></script>
+    <script src="/lib/jquery.unobtrusive-ajax.min.js"></script>
+    <!-- endinject -->
+    <script src="/lib/jquery_ui/jquery-ui.min.js"></script>
+    <!--Data Table-->
+    <script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/bower_components/datatables-tabletools/js/dataTables.tableTools.js"></script>
+    <script src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="/bower_components/datatables-colvis/js/dataTables.colVis.js"></script>
+    <script src="/bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
+    <script src="/bower_components/datatables-scroller/js/dataTables.scroller.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--init data tables-->
+    <!--sparkline-->
+    <script src="/bower_components/bower-jquery-sparkline/dist/jquery.sparkline.retina.js"></script>
+    <script src="/js/init-sparkline.js"></script>
+
+    <script src="/appjs/google_jsapi.js"></script>
+    <script src="/lib/DSC/SignerDigital-1.0.0.min.js"></script>
+    <script src="/lib/DSC/signalr.js"></script>
+
+    <script src="/SweetAlert/MessageCustomSetting.js"></script>
+    <!-- Common Script   -->
+    <script src="/js/main.js"></script>
+    <script src="/appjs/ExcelExport.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var UserName = "VIRESH CHANDRA GUPTA";
+
+        //  $('#spuserName').text(UserName);
+        $("#spuserName").text($("#username").val());
+
+        $("#logOut").click(function () {
+          Signout();
+        });
+        $(".unicode").keypress(function (e) {
+          var regex = new RegExp("^[a-zA-Z0-9 ]+$");
+          var strigChar = String.fromCharCode(
+            !e.charCode ? e.which : e.charCode
+          );
+          if (regex.test(strigChar)) {
+            return true;
+          }
+          return false;
+        });
+      });
+
+      function Signout() {
+        window.location.href = "/Account/LogOut";
+      }
+      $(".weight").change(function () {
+        var weight = parseFloat($(".weight").val()).toFixed(3);
+        $(".weight").val(weight);
+      });
+
+      $(document).keydown(function (event) {
+        if (event.keyCode == 123) {
+          // Prevent F12
+          return false;
+        } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+          // Prevent Ctrl+Shift+I
+          return false;
+        }
+      });
+    </script>
+
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="gtransapi.js"></script>
+    <script type="text/javascript">
+      google.load("elements", "1", {
+        packages: "transliteration",
+      });
+      function onLoad() {
+        var options = {
+          sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
+          destinationLanguage: [
+            google.elements.transliteration.LanguageCode.HINDI,
+          ],
+          shortcutKey: "ctrl+g",
+          transliterationEnabled: true,
+        };
+        var control =
+          new google.elements.transliteration.TransliterationControl(options);
+        // Enable transliteration in the editable elements with id
+        // 'transliterateDiv'.
+        control.makeTransliteratable(["kreta_details"]);
+        control.makeTransliteratable(["trade_mandi"]);
+        control.makeTransliteratable(["crop_type"]);
+      }
+      google.setOnLoadCallback(onLoad);
+    </script>
+    <script type="text/javascript">
+      $(function () {
+        $(".js-example-basic-multiple").select2({
+          placeholder: "प्रपत्र चुने ",
+        });
+      });
+
+      $("#datepicker").datepicker({
+        dateFormat: "dd/mm/yy",
+        maxDate: "0",
+        minDate: "0",
+      });
+
+      function valid_cal_fee() {
+        try {
+          $("#loader").css("display", "block");
+
+          var r_id = $("#six_r_id").val();
+          var rate = $("#rate").val();
+          var crop_code = $("#crop_code").val();
+          var crop_qty = $("#crop_weight").val();
+          //   var _token = $('input[name="_token"]').val();
+          var request = {
+            r_id: r_id,
+            crop_code: crop_code,
+            rate: rate,
+            crop_qty: crop_qty,
+          };
+          if (r_id != "") {
+            $.ajax({
+              type: "post",
+              dataType: "json",
+              url: "/traders/valid_cal_fee",
+              data: request,
+              success: function (obj) {
+                if (obj[0].final_mandi_fee == 0 && obj[0].final_dev_fee == 0) {
+                  $("#calculate_shulk").attr("type", "text").val("NA");
+                  $("#calculate_development").attr("type", "text").val("NA");
+
+                  $("#calculate_shulk").addClass("fixed-input");
+                  $("#calculate_development").addClass("fixed-input");
+                  $("#calculate_shulk").prop("readonly", true);
+                  $("#calculate_development").prop("readonly", true);
+                  $("#calculate_shulk").off("change");
+                  $("#calculate_development").off("change");
+                } else {
+                  $("#calculate_shulk").val(obj[0].final_mandi_fee);
+                  $("#calculate_development").val(obj[0].final_dev_fee);
+                  $("#calculate_shulk").prop("min", obj[0].min_mandi_fee);
+                  $("#calculate_development").prop("min", obj[0].min_dev_fee);
+
+                  $("#calculate_shulk").addClass("fixed-input");
+                  $("#calculate_development").addClass("fixed-input");
+                  $("#calculate_shulk").prop("readonly", true);
+                  $("#calculate_development").prop("readonly", true);
+                  $("#calculate_shulk").attr("type", "number");
+                  $("#calculate_development").attr("type", "number");
+                  if (obj[0].edit_flag == 1) {
+                    $("#calculate_shulk").removeClass("fixed-input");
+                    $("#calculate_development").removeClass("fixed-input");
+                    $("#calculate_shulk").prop("readonly", false);
+                    $("#calculate_development").prop("readonly", false);
+                  }
+                }
+                get_crop_rate1();
+              },
+            });
+          }
+        } catch (e) {
+          $("#loader").css("display", "none");
+        }
+      }
+      function ErrorChange(e) {
+        var hcontent = $(e).val();
+        if (hcontent !== "") {
+          $(e).closest("div").find(".errorMessage").html("");
+        } else {
+          $(e)
+            .closest("div")
+            .find(".errorMessage")
+            .html(
+              "<span id=" +
+                $(e).id +
+                '"-error" class="">' +
+                $(e).attr("data-val-required") +
+                "</span>"
+            );
+          $(e).attr("aria-decribedby", $(e).id + "-error");
+          $(e).attr("aria-invalid", true);
+        }
+      }
+      function ErrorChangetd(e) {
+        var hcontent = $(e).val();
+        if (hcontent !== "") {
+          $(e).closest("td").find(".errorMessage").html("");
+        } else {
+          $(e)
+            .closest("td")
+            .find(".errorMessage")
+            .html(
+              "<span id=" +
+                $(e).id +
+                '"-error" class="">' +
+                $(e).attr("data-val-required") +
+                "</span>"
+            );
+          $(e).attr("aria-decribedby", $(e).id + "-error");
+          $(e).attr("aria-invalid", true);
+        }
+      }
+
+      function tradertype() {
+        if ($("#ForSelf").is(":checked")) {
+          $("#kreta_license_no").val("");
+          $("#kreta_details").val("");
+          $("#kreta_license_no").removeAttr("readonly");
+          $("#kreta_details").removeAttr("readonly");
+
+          $("#six_r_id").attr("multiple", "true");
+          $("#crop_weight").removeAttr("readonly");
+          $("#rate").removeAttr("readonly");
+        } else {
+          $("#six_r_id").removeAttr("multiple");
+          $("#crop_weight").attr("readonly", "true");
+          $("#rate").attr("readonly", "true");
+          $("#kreta_license_no").attr("readonly", "true");
+          $("#kreta_details").attr("readonly", "true");
+        }
+        $("#crop_code").val("");
+        get_crop_details();
+      }
+      function preview_data() {
+        var dtpicker = $("#datepicker").val();
+        var trade_mandi = $("#trade_mandi").val();
+        var kreta_license_no = $("#kreta_license_no").val();
+        var kreta_details = $("#kreta_details").val();
+        var crop_code = $("#crop_code").val();
+
+        var six_r_id = $("#six_r_id").val();
+
+        var crop_type = $("#crop_type").val();
+        var crop_weight = $("#crop_weight").val();
+        var rate = $("#rate").val();
+        var captcha = $("input.captcha").val();
+        var state = $("input[name='buyer_state']:checked").val();
+        var trader_type = $("input[name='trader_type']:checked").val();
+        var valid = 1;
+
+        $("span.field-validation-valid").text("");
+        if (typeof state === "undefined") {
+          valid = 0;
+          $("input[name='buyer_state']")
+            .parent()
+            .parent()
+            .find(".field-validation-valid")
+            .text("क्रेता फर्म का राज्य चयन करें");
+        }
+        if (typeof trader_type === "undefined") {
+          valid = 0;
+          $("input[name='trader_type']")
+            .parent()
+            .parent()
+            .find(".field-validation-valid")
+            .html(
+              '<span id="rate-error" class="">प्रपत्र 9 जारीकर्ता  की सौदे में भूमिका का चयन करें</span>'
+            );
+          $("input[name='trader_type']").attr(
+            "aria-decribedby",
+            "trader_type-error"
+          );
+          $("input[name='trader_type']").attr("aria-invalid", true);
+        }
+        if (dtpicker === "") {
+          valid = 0;
+          $("#datepicker")
+            .closest("div")
+            .find(".field-validation-valid")
+            .html(
+              '<span id="datepicker-error" class="">' +
+                $("#datepicker").attr("data-val-required") +
+                "</span>"
+            );
+          $("#datepicker").attr("aria-decribedby", "datepicker-error");
+          $("#datepicker").attr("aria-invalid", true);
+        }
+        if (trade_mandi === "") {
+          valid = 0;
+          //    console.log($("#trade_mandi").closest('div').find('.errorMessage').text());
+          $("#trade_mandi")
+            .closest("div")
+            .find(".field-validation-valid")
+            .html(
+              '<span id="trade_mandi-error" class="">' +
+                $("#trade_mandi").attr("data-val-required") +
+                "</span>"
+            );
+          $("#trade_mandi").attr("aria-decribedby", "trade_mandi-error");
+          $("#trade_mandi").attr("aria-invalid", true);
+        }
+        if (kreta_details === "") {
+          valid = 0;
+          $("#kreta_details")
+            .closest("div")
+            .find(".field-validation-valid")
+            .html(
+              '<span id="kreta_details-error" class="">' +
+                $("#kreta_details").attr("data-val-required") +
+                "</span>"
+            );
+          $("#kreta_details").attr("aria-decribedby", "kreta_details-error");
+          $("#kreta_details").attr("aria-invalid", true);
+        }
+        if (kreta_license_no === "") {
+          if ($("#uttar_pradesh").is(":checked")) {
+            valid = 0;
+
+            $("#kreta_license_no")
+              .parent()
+              .find("span.errorMessage")
+              .text("लाइसेंस संख्या दर्ज करें");
+          } else {
+            $("#kreta_license_no").parent().find("span.errorMessage").text("");
+          }
+        }
+        if (crop_code === "") {
+          valid = 0;
+          $("#crop_code")
+            .closest("td")
+            .find(".field-validation-valid")
+            .html(
+              '<span id="crop_code-error" class="">' +
+                $("#crop_code").attr("data-val-required") +
+                "</span>"
+            );
+          $("#crop_code").attr("aria-decribedby", "crop_code-error");
+          $("#crop_code").attr("aria-invalid", true);
+        }
+        if (six_r_id === "" || six_r_id === null) {
+          valid = 0;
+          $("#six_r_id")
+            .closest("td")
+            .find(".field-validation-valid")
+            .html(
+              '<span id="six_r_id-error" class="">' +
+                $("#six_r_id").attr("data-val-required") +
+                "</span>"
+            );
+          $("#six_r_id").attr("aria-decribedby", "six_r_id-error");
+          $("#six_r_id").attr("aria-invalid", true);
+        }
+        //if (crop_type === '') {
+        //    valid = 0;
+        //    $("#crop_type").closest('td').find('.errorMessage').html('<span id="crop_type-error" class="">' + $("#crop_type").attr("data-val-required") + '</span>');
+        //    $("#crop_type").attr("aria-decribedby", "crop_type-error");
+        //    $("#crop_type").attr("aria-invalid", true);
+        //}
+        if (crop_weight === "") {
+          valid = 0;
+          $("#crop_weight")
+            .closest("td")
+            .find(".field-validation-valid")
+            .html(
+              '<span id="crop_weight-error" class="">' +
+                $("#crop_weight").attr("data-val-required") +
+                "</span>"
+            );
+          $("#crop_weight").attr("aria-decribedby", "crop_weight-error");
+          $("#crop_weight").attr("aria-invalid", true);
+        }
+        if (rate === "") {
+          valid = 0;
+          $("#rate")
+            .closest("td")
+            .find(".field-validation-valid")
+            .html(
+              '<span id="rate-error" class="">' +
+                $("#rate").attr("data-val-required") +
+                "</span>"
+            );
+          $("#rate").attr("aria-decribedby", "rate-error");
+          $("#rate").attr("aria-invalid", true);
+        }
+        if (captcha === "") {
+          valid = 0;
+          $(".captcha")
+            .closest("div")
+            .find(".errorMessage")
+            .html(
+              '<span id="captcha-error" class="">' +
+                $(".captcha").attr("data-val-required") +
+                "</span>"
+            );
+          $(".captcha").attr("aria-decribedby", "captcha-error");
+          $(".captcha").attr("aria-invalid", true);
+        }
+        if (valid !== 1) {
+          return false;
+        }
+
+        // if ($('#form1').valid()) {
+        $("#book_no").text($("#seq_number").val());
+        $("#serial_no").text($("#transaction_number").val());
+        $("#curr_date").text($("#datepicker").val());
+        $("#mandi").text($("#mandi_name").val());
+        $("#trade_date").text($("#datepicker").val());
+        $("#mandi_trade").text($("#trade_mandi").val());
+        $("#s_name").text($("#vikreta_details").val());
+        $("#b_name").text($("#kreta_details").val());
+        $("#license_no").text($("#license_number").val());
+        $("#t_name").text($("#trader_name").val());
+        $("#type_crop").text($("#crop_type").val());
+        $("#rate_crop").text($("#rate").val());
+        $("#weight_crop").text($("#crop_weight").val());
+        $("#amount_crop").text($("#cost").val());
+        $("#total_fee").text($("#total").val());
+        $("#amt_total").text($("#total_amount").val());
+        $("#crop_name").text($("#crop_code option:selected").text());
+        $("#b_license_no").text($("#kreta_license_no").val());
+        $("#etype").text($("#ExportType option:selected").text());
+        if ($('input[name="buyer_state"]:checked').val() == "u") {
+          $("#b_state").text("उत्तर प्रदेश");
+        } else {
+          $("#b_state").text("अन्य");
+        }
+        if ($("#ForSelf").is(":checked")) {
+          $("#tradertype").text("व्यापारी");
+        } else {
+          $("#tradertype").text("आढ़ती ");
+        }
+        var r = [];
+        $.each($("#six_r_id option:selected"), function () {
+          r.push($(this).val());
+        });
+        $("#additional").text(r.join(", "));
+        $("#ModalCenter").modal("show");
+
+        //}
+        //else {
+        //    var r = [];
+        //    $.each($("#six_r_id option:selected"), function () {
+        //        r.push($(this).val());
+        //    });
+        //    console.log(r);
+        //}
+      }
+
+      function get_crop_details() {
+        try {
+          $("#rate").val("");
+          $(".cal_amt").val("");
+          var crop_code = $("#crop_code").val();
+          //document.getElementById("rate_parameter").value ="";
+          document.getElementById("crop_weight").value = "";
+          document.getElementById("crop_type").value = "";
+          document.getElementById("rate").value = "";
+          var trader_type = $("input[name='trader_type']:checked").val();
+          if (typeof trader_type === "undefined") {
+            alert("प्रपत्र 9 जारीकर्ता  की सौदे में भूमिका का चयन करें|");
+            return;
+          }
+          if (trader_type === "d") {
+            $("#kreta_license_no").val("");
+            $("#kreta_details").val("");
+          }
+          var ExportType = $("#ExportType").val();
+          var request = {
+            crop_code: crop_code,
+            trader_type: trader_type,
+            ExportType: ExportType,
+          };
+          if (crop_code) {
+            $("#loader").css("display", "block");
+            $.ajax({
+              type: "post",
+              url: "/Traders/get_crop_details",
+              data: request,
+              success: function (obj) {
+                if (obj.length !== 0) {
+                  $("#six_r_id").html(
+                    '<option style="font-weight:bold;" value="">Select 6R/ES/P</option>'
+                  );
+                  $.each(obj, function (key, value) {
+                    if (value.serial_number) {
+                      $("#six_r_id").append(
+                        '<option value="' +
+                          value.serial_number +
+                          '">' +
+                          value.serial_number +
+                          "</option>"
+                      );
+                    }
+                  });
+                  $("#mandi_shulk").val(obj[0].mandi_shulk);
+                  $("#development").val(obj[0].development);
+                  $("#rate").data("min", obj[0].min_rate);
+                } else {
+                  $("#six_r_id").html(
+                    '<option style="font-weight:bold;" value="">Select 6R/ES/P</option>'
+                  );
+                }
+                $("#loader").css("display", "none");
+              },
+            });
+          } else {
+            $("#six_r_id").html(
+              '<option value="" style="font-weight:bold;">Select 6R/ES/P</option>'
+            );
+            //document.getElementById("rate_parameter").value ="";
+            document.getElementById("crop_weight").value = "";
+          }
+        } catch (e) {
+          $("#loader").css("display", "none");
+        }
+      }
+      //function get_six_r_details() {
+      //    try {
+      //        $('#rate').val('');
+      //        $('.cal_amt').val('');
+      //        var crop_code = $('#crop_code').val();
+      //        $('#loader').css("display", "block");
+      //        var six_r_id = $('#six_r_id').val();
+      //        var trader_type = $("input[name='trader_type']:checked").val();
+      //        if (trader_type == 'd') {
+      //            alert("आप प्रपत्र 9 जारीकर्ता की भूमिका में आढ़ती चयन करने के कारण एक 6 आर संख्या का चयन कर सकते हैं");
+      //        }
+      //        var request = { crop_code: crop_code, six_r_id: six_r_id };
+      //        if (six_r_id != '') {
+
+      //            $.ajax({
+      //                type: "post",
+      //                dataType: "json",
+      //                url: "/Traders/get_six_r_details",
+      //                data: request,
+      //                success: function (obj) {
+      //                    debugger;
+      //                    if (obj!=null) {
+      //                        document.getElementById("crop_weight").value = obj.val;
+      //                        document.getElementById("crop_type").value = obj.crop_type;
+      //                        if (trader_type == 'd') {
+      //                            document.getElementById("kreta_license_no").value = obj.kreta_license_number;
+      //                            license_detail();
+      //                            document.getElementById("rate").value = parseFloat(obj.crop_rate).toFixed(2);
+      //                            valid_cal_fee();
+      //                        }
+
+      //                    }
+      //                    $('#loader').css("display", "none");
+      //                }
+      //            });
+      //        }
+      //        else {
+      //            //document.getElementById("rate_parameter").value ="";
+      //            document.getElementById("crop_weight").value = "";
+      //            document.getElementById("crop_type").value = "";
+      //            document.getElementById("crop_type").value = "";
+      //            document.getElementById("rate").value = "";
+      //            $('.cal_amt').val('');
+      //            $('#loader').css("display", "none");
+      //        }
+      //    } catch (e) {
+      //        $('#loader').css("display", "none");
+      //    }
+      //}
+
+      function get_six_r_details() {
+        try {
+          $("#rate").val("");
+          $(".cal_amt").val("");
+          var crop_code = $("#crop_code").val();
+          $("#loader").css("display", "block");
+          var six_r_id = $("#six_r_id").val();
+          var trader_type = $("input[name='trader_type']:checked").val();
+          if (trader_type == "d") {
+            alert(
+              "आप प्रपत्र 9 जारीकर्ता की भूमिका में आढ़ती चयन करने के कारण एक 6 आर संख्या का चयन कर सकते हैं"
+            );
+          }
+          var request = { crop_code: crop_code, six_r_id: six_r_id };
+          if (six_r_id != "") {
+            $.ajax({
+              type: "post",
+              dataType: "json",
+              url: "/Traders/get_six_r_details",
+              data: request,
+              success: function (obj) {
+                if (obj != null) {
+                  document.getElementById("crop_weight").value = obj[0].val;
+                  document.getElementById("crop_type").value = obj[0].crop_type;
+                  if (trader_type == "d") {
+                    document.getElementById("kreta_license_no").value =
+                      obj[0].kreta_license_number;
+                    license_detail();
+                    document.getElementById("rate").value = parseFloat(
+                      obj[0].crop_rate
+                    ).toFixed(2);
+                    valid_cal_fee();
+                  }
+                }
+                $("#loader").css("display", "none");
+              },
+            });
+          } else {
+            //document.getElementById("rate_parameter").value ="";
+            document.getElementById("crop_weight").value = "";
+            document.getElementById("crop_type").value = "";
+            document.getElementById("crop_type").value = "";
+            document.getElementById("rate").value = "";
+            $(".cal_amt").val("");
+            $("#loader").css("display", "none");
+          }
+        } catch (e) {
+          $("#loader").css("display", "none");
+        }
+      }
+
+      function valid_weight() {
+        $("#rate").val("");
+        $(".cal_amt").val("");
+        var weight = $("#crop_weight").val();
+        var six_r_id = $("#six_r_id").val();
+
+        var request = {
+          weight: weight,
+          six_r_id: six_r_id,
+          formType: "9rPart1",
+        };
+        $.ajax({
+          type: "post",
+          dataType: "json",
+          url: "/Traders/valid_weight",
+          data: request,
+          success: function (data) {
+            if (data[0].status === 1) {
+              alert("weight not valid!!");
+              $("#crop_weight").val(data[0].val);
+            } else if (data[0].status == 3) {
+              alert(
+                "चुने गए प्रपत्रों क अनुसार न्यूनतम मात्रा " +
+                  data[0].val +
+                  " कुंतल से अधिक होनी चाहिए"
+              );
+              $("#crop_weight").val("");
+            }
+          },
+        });
+      }
+      function get_crop_rate1() {
+        var shulk = 0;
+        var development = 0;
+        var total = 0;
+        var min_rate = parseInt($("#rate").data("min"));
+        var c_rate = parseInt($("#rate").val());
+        $("#loader").css("display", "block");
+        /*if(c_rate < min_rate){
+                $('#rate').val('');
+                alert("Please match the minimum rate.");
+            }
+            else{*/
+        var crop_rate = document.getElementById("rate").value;
+        var crop_weight = document.getElementById("crop_weight").value;
+        var crop_amount = crop_rate * crop_weight;
+        document.getElementById("cost").value = crop_amount.toFixed(2);
+        if ($("input[name='trader_type']:checked").val() == "d") {
+          var calculate_shulk = (
+            ($("#cost").val() * $("#mandi_shulk").val()) /
+            100
+          ).toFixed(2);
+          var calculate_development = (
+            ($("#cost").val() * $("#development").val()) /
+            100
+          ).toFixed(2);
+          $("#calculate_shulk").val(calculate_shulk);
+          $("#calculate_development").val(calculate_development);
+          $("#mandi_shulk").attr("type", "text").attr("readonly", true);
+          $("#development").attr("type", "text").attr("readonly", true);
+        }
+
+        var cal_rate2 = crop_weight * $("#mandi_rate5").val();
+        $("#calculate_rate5").val(cal_rate2.toFixed(2));
+        var cal_rate3 = crop_amount * ($("#mandi_rate6").val() / 100);
+        $("#calculate_rate6").val(cal_rate3.toFixed(2));
+        var cal_rate4 = crop_weight * $("#mandi_rate7").val();
+        $("#calculate_rate7").val(cal_rate4.toFixed(2));
+        var cal_rate5 = crop_amount * ($("#mandi_rate8").val() / 100);
+        $("#calculate_rate8").val(cal_rate5.toFixed(2));
+        var cal_rate6 = crop_amount * ($("#mandi_rate9").val() / 100);
+        $("#calculate_rate9").val(cal_rate6.toFixed(2));
+        var others = crop_amount * ($("#others").val() / 100);
+        $("#calculate_rate1").val(others.toFixed(2));
+        if (
+          $("#calculate_shulk").val() == "NA" ||
+          $("#calculate_development").val() == "NA"
+        ) {
+          total =
+            cal_rate4 + cal_rate3 + cal_rate2 + cal_rate5 + cal_rate6 + others;
+        } else {
+          shulk = parseFloat($("#calculate_shulk").val());
+          development = parseFloat($("#calculate_development").val());
+          total =
+            development +
+            shulk +
+            cal_rate4 +
+            cal_rate3 +
+            cal_rate2 +
+            cal_rate5 +
+            cal_rate6 +
+            others;
+        }
+        $("#total").val(total.toFixed(2));
+        $("#total_amount").val((total + crop_amount).toFixed(2));
+        $("#loader").css("display", "none");
+        //}
+      }
+      function kreta_state() {
+        if ($("#uttar_pradesh").is(":checked")) {
+          $("#kreta_license_no").attr("required", true);
+          $("#opt_lice").css("display", "none");
+          //$('#kreta_details').attr('readonly', true);
+        } else {
+          $("#kreta_license_no").removeAttr("required");
+          $("#opt_lice").removeAttr("style");
+          //$('#kreta_details').removeAttr('readonly');
+        }
+      }
+      function license_detail() {
+        $("#loader").css("display", "block");
+        var lice_no = $("#kreta_license_no").val();
+        var trader_type = $("input[name='trader_type']:checked").val();
+        var request = { lice_no: lice_no, tradertype: trader_type };
+        $.ajax({
+          type: "get",
+          url: "/traders/get_license_detail_for9R",
+          data: request,
+          success: function (obj) {
+            $("#loader").css("display", "none");
+            if (obj.length !== 0) {
+              if (obj[0].status == "s") {
+                alert(obj[0].msg);
+                $("#kreta_details").val("");
+                $("#kreta_license_no").val("");
+              } else if (obj[0].status == "c") {
+                alert(obj[0].msg);
+                $("#kreta_details").val("");
+                $("#kreta_license_no").val("");
+              } else if (obj[0].status == "1") {
+                $("#kreta_details").val(obj[0].kretadetail);
+              }
+            } else {
+              alert(
+                "खरीदार लाइसेंस संख्या लॉग इन व्यापारी लाइसेंस संख्या के समान नहीं हो सकता  | "
+              );
+              $("#kreta_details").val("");
+            }
+            $("#loader").css("display", "none");
+          },
+        });
+      }
+      function submitDetailsForm() {
+        $("#submitbtn").hide();
+        $("#loader").css("display", "block");
+
+        swal({
+          title: "क्या आप प्रपत्र-9 जारी करना चाहते है?",
+          text: "आपने यह प्रपत्र-9 पूर्णतः जाँच लिया है तथा जारी होने क पश्चात किसी भी प्रकार का संशोधन संभव नहीं है!",
+          icon: "warning",
+          buttons: {
+            cancel: "हाँ",
+            ok: {
+              text: "नहीं",
+              className: "sweet-warning",
+            },
+          },
+          closeOnEsc: false,
+          closeOnClickOutside: false,
+        }).then((cncl_form) => {
+          if (cncl_form) {
+            $("#loader").css("display", "none");
+            return false;
+          } else {
+            //$("#form1").submit();
+            //   console.log($('#form1').serialize());
+            $.ajax({
+              url: $("#form1").attr("action"),
+              method: "post",
+              data: $("#form1").serialize(),
+              success: function (data) {
+                var iconclass = data[0].status == 0 ? "warning" : "success";
+                swal({
+                  title: data[0].msg,
+                  text: "",
+                  icon: iconclass,
+                  buttons: {
+                    cancel: "Ok",
+                    //ok: {
+                    //    //text: "नहीं",
+                    //    className: 'sweet-warning'
+                    //},
+                  },
+                  closeOnEsc: false,
+                  closeOnClickOutside: false,
+                }).then((cncl_form) => {
+                  if (cncl_form) {
+                    $("#loader").css("display", "none");
+                    $("#submitbtn").show();
+                    return false;
+                  } else {
+                    $("#loader").css("display", "none");
+                    if (data[0].status > 0) {
+                      location.href = "/Traders/generated_9R";
+                    }
+                    if (data[0].status == 0) {
+                      $("#submitbtn").show();
+                      $("#ModalCenter").modal("toggle");
+                      $("#dntCaptchaRefreshButton").trigger("click");
+                    }
+                  }
+                });
+              },
+            });
+          }
+        });
+      }
+      var onBegin = function () {};
+      var onComplete = function (data) {
+        $("#loader").css("display", "none");
+      };
+      var onSuccess = function (data) {};
+    </script>
+    <div
+      id="ui-datepicker-div"
+      class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"
+    ></div>
+
+    <div
+      class="inputapi-popupeditor inputapi-popupeditor-vertical"
+      role="menu"
+      aria-haspopup="true"
+      tabindex="-1"
+      style="user-select: none; display: none"
+    >
+      <table style="user-select: none">
+        <tbody style="user-select: none">
+          <tr style="user-select: none">
+            <td style="user-select: none">
+              <table style="width: 100%; user-select: none">
+                <tbody style="user-select: none">
+                  <tr style="user-select: none">
+                    <td style="width: 100%; user-select: none">
+                      <div class="inputapi-popupeditor-input" style="">
+                        <span
+                          class="inputapi-popupeditor-cursor"
+                          style=""
+                        ></span>
+                      </div>
+                    </td>
+                    <td width="63px" style="user-select: none">
+                      <div
+                        class="inputapi-popupeditor-logo"
+                        style="user-select: none"
+                      ></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table style="width: 100%; user-select: none">
+                <tbody style="user-select: none">
+                  <tr style="user-select: none">
+                    <td style="width: 100%; user-select: none">
+                      <div
+                        class="inputapi-popupeditor-content"
+                        style="user-select: none"
+                      ></div>
+                    </td>
+                    <td width="54px" style="user-select: none">
+                      <div
+                        class="inputapi-popupeditor-nav inputapi-popupeditor-nav-horizontal"
+                        tabindex="-1"
+                        style="user-select: none; display: none"
+                      >
+                        <div
+                          class="inputapi-inline-block inputapi-custom-button inputapi-custom-button-disabled"
+                          title=""
+                          role="button"
+                          aria-disabled="true"
+                          id=":0"
+                          style="user-select: none"
+                        >
+                          <div
+                            class="inputapi-inline-block inputapi-custom-button-outer-box"
+                            style="user-select: none"
+                          >
+                            <div
+                              class="inputapi-inline-block inputapi-custom-button-inner-box"
+                              style="user-select: none"
+                            >
+                              <div
+                                class="inputapi-popupeditor-pageup inputapi-popupeditor-navbutton"
+                                style="user-select: none"
+                              ></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="inputapi-inline-block inputapi-custom-button"
+                          title=""
+                          role="button"
+                          id=":1"
+                          style="user-select: none"
+                        >
+                          <div
+                            class="inputapi-inline-block inputapi-custom-button-outer-box"
+                            style="user-select: none"
+                          >
+                            <div
+                              class="inputapi-inline-block inputapi-custom-button-inner-box"
+                              style="user-select: none"
+                            >
+                              <div
+                                class="inputapi-popupeditor-pagedown inputapi-popupeditor-navbutton"
+                                style="user-select: none"
+                              ></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="inputapi-multisegmentpopupeditor inputapi-multisegmentpopupeditor-vertical"
+      role="menu"
+      aria-haspopup="true"
+      tabindex="-1"
+      style="user-select: none; display: none"
+    >
+      <table style="user-select: none">
+        <tbody style="user-select: none">
+          <tr style="user-select: none">
+            <td style="user-select: none">
+              <div
+                class="inputapi-multisegmentpopupeditor-input"
+                contenteditable="true"
+                tabindex="-1"
+                style=""
+              ></div>
+              <div
+                class="inputapi-multisegmentpopupeditor-content"
+                style="user-select: none"
+              ></div>
+              <div
+                class="inputapi-multisegmentpopupeditor-footer"
+                style="user-select: none"
+              >
+                <div
+                  class="inputapi-multisegmentpopupeditor-logo"
+                  style="user-select: none"
+                ></div>
+                <div
+                  class="inputapi-multisegmentpopupeditor-indicator"
+                  style="user-select: none"
+                ></div>
+                <div
+                  class="inputapi-multisegmentpopupeditor-footer-end"
+                  style="user-select: none"
+                ></div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="inputapi-multisegmentpopupeditor inputapi-multisegmentpopupeditor-vertical"
+      role="menu"
+      aria-haspopup="true"
+      tabindex="-1"
+      style="user-select: none; display: none"
+    >
+      <table style="user-select: none">
+        <tbody style="user-select: none">
+          <tr style="user-select: none">
+            <td style="user-select: none">
+              <div
+                class="inputapi-multisegmentpopupeditor-input"
+                contenteditable="true"
+                tabindex="-1"
+                style=""
+              ></div>
+              <div
+                class="inputapi-multisegmentpopupeditor-content"
+                style="user-select: none"
+              ></div>
+              <div
+                class="inputapi-multisegmentpopupeditor-footer"
+                style="user-select: none"
+              >
+                <div
+                  class="inputapi-multisegmentpopupeditor-logo"
+                  style="user-select: none"
+                ></div>
+                <div
+                  class="inputapi-multisegmentpopupeditor-indicator"
+                  style="user-select: none"
+                ></div>
+                <div
+                  class="inputapi-multisegmentpopupeditor-footer-end"
+                  style="user-select: none"
+                ></div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div
+      class="inputapi-multisegmentpopupeditor inputapi-multisegmentpopupeditor-vertical"
+      role="menu"
+      aria-haspopup="true"
+      tabindex="-1"
+      style="user-select: none; display: none"
+    >
+      <table style="user-select: none">
+        <tbody style="user-select: none">
+          <tr style="user-select: none">
+            <td style="user-select: none">
+              <div
+                class="inputapi-multisegmentpopupeditor-input"
+                contenteditable="true"
+                tabindex="-1"
+                style=""
+              ></div>
+              <div
+                class="inputapi-multisegmentpopupeditor-content"
+                style="user-select: none"
+              ></div>
+              <div
+                class="inputapi-multisegmentpopupeditor-footer"
+                style="user-select: none"
+              >
+                <div
+                  class="inputapi-multisegmentpopupeditor-logo"
+                  style="user-select: none"
+                ></div>
+                <div
+                  class="inputapi-multisegmentpopupeditor-indicator"
+                  style="user-select: none"
+                ></div>
+                <div
+                  class="inputapi-multisegmentpopupeditor-footer-end"
+                  style="user-select: none"
+                ></div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

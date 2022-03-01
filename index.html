@@ -72,6 +72,8 @@
   <body>
     
 <script type="text/javascript">
+
+
   google.load("elements", "1", { packages: "transliteration" });
   var control;
   function onLoad() {         
@@ -85,10 +87,32 @@
       };                     
       control = new google.elements.transliteration.TransliterationControl(options);  
       control.makeTransliteratable(['txtMessage']);   
-      //control.makeTransliteratable(['crop_type']);  
+     control.makeTransliteratable(['crop_type']);  
   }
   google.setOnLoadCallback(onLoad);         
+  
+//   base64_encode = function(str = "") {
+//   return btoa(unescape(encodeURIComponent(str)));
+// };
+
+
+  function newFirm(){
+    var x = document.getElementById("firmName").value;
+    //console.log(x);
+    if(x === "VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH"){
+      document.getElementById("nine_r").value="17121983(75)/9/00140";
+      document.getElementById("gate_pass").value="17121983(75)/GP/00085";
+      document.getElementById("six_r").value="17121983(75)/6/00300,17121983(75)/6/00301,17121983(75)/6/00302";
+    }
+    else {
+      document.getElementById("nine_r").value="57027386(75)/9/00140";
+      document.getElementById("gate_pass").value="57027386(75)/GP/00085";
+      document.getElementById("six_r").value="57027386(75)/6/00300,57027386(75)/6/00301,57027386(75)/6/00302";
+    
+    }
+  }
 </script>
+
 
 <textarea name="txtMessage" id="txtMessage"></textarea>
     <form id="regForm" action="./Home.html"  autocomplete="off" method="get" required>
@@ -101,6 +125,7 @@
             <label >विक्रेता फर्म का नाम व जिला :</label>
             <p>
               <input
+                id="firmName"
                 placeholder="VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH"
                 oninput="this.className = ''"
                 name="company"
@@ -108,6 +133,7 @@
                 list="company"
                 value="V C ENTERPRISES, 98 BANDIYAAN JAITHARA ETAH"
                 required
+                onchange="newFirm()"
               />
               <datalist id="company">
                     <option value="VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH"></option>
@@ -149,9 +175,8 @@
           </div>
           <div>
             <label >किस्म :</label>
-            <p >
-            
-              <input  type="text"  id="crop_type"  autocomplete="off" name="crop_type" value="Samanaya"> 
+            <p>
+              <input  type="text"  id="crop_type"  autocomplete="off" name="crop_type" value="Samanaya"/> 
             </p>
           </div>
          </div>
@@ -226,8 +251,9 @@
             <label>सलंग्न प्रपत्र-9 की संख्या :</label>
         <p>
           <input
-            placeholder="17121983(75)/9/00140"
-            value="17121983(75)/9/00140"
+            id="nine_r"
+            placeholder="57027386(75)/9/00140"
+            value="57027386(75)/9/00140"
             oninput="this.className = ''"
             name="9r"
             required
@@ -238,8 +264,9 @@
             <label>गेटपास संख्या :</label>
             <p>
               <input
-                placeholder="17121983(75)/GP/00085"
-                value="17121983(75)/GP/00085"
+              id="gate_pass"
+                placeholder="57027386(75)/GP/00085"
+                value="57027386(75)/GP/00085"
                 oninput="this.className = ''"
                 name="gatepass"
                 required
@@ -253,8 +280,9 @@
         <label>6-र संख्या :</label>
         <p>
           <input
-            placeholder="17121983(75)/6/00300,17121983(75)/6/00301,17121983(75)/6/00302"
-            value="17121983(75)/6/00300,17121983(75)/6/00301,17121983(75)/6/00302"
+          id="six_r"
+            placeholder="57027386(75)/6/00300,57027386(75)/6/00301,57027386(75)/6/00302"
+            value="57027386(75)/6/00300,57027386(75)/6/00301,57027386(75)/6/00302"
             oninput="this.className = ''"
             name="9rno"
             required

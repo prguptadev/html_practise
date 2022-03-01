@@ -932,11 +932,11 @@
               <td>गंतव्य की दूरी (KM)</td>
               <td colspan="1"><label id="distancess"> </label></td>
               <td>सीमांत गृह केंद्र का नाम</td>
-              <td colspan="1"><label> </label></td>
+              <td colspan="1"><label id="jeans1"> </label></td>
             </tr>
             <tr>
               <td>कोड</td>
-              <td colspan="1"><label> </label></td>
+              <td colspan="1"><label id="jeans2"> </label></td>
             </tr>
           </tbody>
         </table>
@@ -1132,16 +1132,22 @@
       if (crop_code === "WHEAT") {
         document.getElementById("crop_code").innerHTML = "गेहूँ";
         cropforqr = "WHEAT";
+        document.getElementById("jeans1").innerHTML = "०० ";
+        document.getElementById("jeans2").innerHTML = "00";
       }
 
       if (crop_code === "MUSTARD") {
         document.getElementById("crop_code").innerHTML = "लाही तथा सरसो *2";
         cropforqr = "RDMST*1";
+        document.getElementById("jeans1").innerHTML = "०० ";
+        document.getElementById("jeans2").innerHTML = "00";
       }
 
       if (crop_code === "BARLEY") {
         document.getElementById("crop_code").innerHTML = "जौ";
         cropforqr = "BARLEY";
+        document.getElementById("jeans1").innerHTML = "०० ";
+        document.getElementById("jeans2").innerHTML = "00";
       }
 
       if (crop_code === "PADDY") {
@@ -1152,16 +1158,22 @@
       if (crop_code === "BAJRA") {
         document.getElementById("crop_code").innerHTML = "बाजरा";
         cropforqr = "BAJRA";
+        // document.getElementById("jeans1").innerHTML = "०० ";
+        // document.getElementById("jeans2").innerHTML = "00";
       }
 
       if (crop_code === "MAIZE") {
         document.getElementById("crop_code").innerHTML = "मक्का";
         cropforqr = "MAIZE";
+        document.getElementById("jeans1").innerHTML = "०० ";
+        document.getElementById("jeans2").innerHTML = "00";
       }
 
       if (crop_code === "GROUND+NUT") {
         document.getElementById("crop_code").innerHTML = "मूँगफली";
         cropforqr = "GROUND NUT";
+        document.getElementById("jeans1").innerHTML = "०० ";
+        document.getElementById("jeans2").innerHTML = "00";
       }
 
       crop_type.replace(/\+/g, "  ");

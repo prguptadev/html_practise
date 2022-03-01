@@ -19,7 +19,42 @@
 
     <script src="./Home_files/modernizr-custom.js.download"></script>
 
+    <script type="text/javascript">
+      google.load("elements", "1", { packages: "transliteration" });
+      var control;
+      var newres;
+      function onLoad() {
+        var options = {
+          //Source Language
+          sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
+          // Destination language to Transliterate
+          destinationLanguage: [
+            google.elements.transliteration.LanguageCode.HINDI,
+          ],
+          shortcutKey: "ctrl+g",
+          transliterationEnabled: true,
+        };
+        control = new google.elements.transliteration.TransliterationControl(
+          options
+        );
+
+        control.makeTransliteratable(["txtMessage"]);
+        // control.makeTransliteratable(["crop_typess"]);
+      }
+      google.setOnLoadCallback(onLoad);
+    </script>
+
     <style type="text/css">
+      textarea {
+        margin: 0px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-color: transparent;
+        height: 38px;
+        border: 1px solid #000;
+        resize: none;
+      }
+
       #progressBackgroundFilter {
         position: fixed;
         top: 0px;
@@ -56,28 +91,6 @@
     </style>
   </head>
   <body oncontextmenu="return false;">
-    <script type="text/javascript">
-      google.load("elements", "1", { packages: "transliteration" });
-      var control;
-      function onLoad() {
-        var options = {
-          //Source Language
-          sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
-          // Destination language to Transliterate
-          destinationLanguage: [
-            google.elements.transliteration.LanguageCode.HINDI,
-          ],
-          shortcutKey: "ctrl+g",
-          transliterationEnabled: true,
-        };
-        control = new google.elements.transliteration.TransliterationControl(
-          options
-        );
-        // control.makeTransliteratable(["crop_typess"]);
-      }
-      google.setOnLoadCallback(onLoad);
-    </script>
-
     <div id="loader" style="display: none" align="center">
       <div id="progressBackgroundFilter"></div>
       <div id="processMessage">
@@ -490,12 +503,23 @@
         document.getElementById("crop_code").innerHTML = "मूँगफली";
         cropforqr = "GROUND NUT";
       }
-      document.getElementById("crop_code").innerHTML = "मूँगफली";
+      // document.getElementById("crop_code").innerHTML = "मूँगफली";
 
-      crop_type.replace(/\+/g, "  ");
+      crop_type.replace(/\+/g, " ");
 
       if (crop_type === "Samanaya")
-        document.getElementById("crop_typess").textContent = "सामान्य ";
+        document.getElementById("crop_typess").innerHTML = "सामान्य ";
+
+      if (crop_type === "sar")
+        document.getElementById("crop_typess").innerHTML = "सर्वती ";
+      if (crop_type === "sug")
+        document.getElementById("crop_typess").innerHTML = "सुगंधा  ";
+      // document.getElementById("crop_typess").innerHTML = crop_type.replace(
+      //   /\+/g,
+      //   " "
+      // );
+
+      // "सामान्य ";
 
       //  console.log(document.getElementById("crop_typess").textContent);
     </script>
