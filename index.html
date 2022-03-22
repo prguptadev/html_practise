@@ -88,6 +88,9 @@
       control = new google.elements.transliteration.TransliterationControl(options);  
       control.makeTransliteratable(['txtMessage']);   
      control.makeTransliteratable(['crop_type']);  
+     control.makeTransliteratable(['firm']);  
+     
+
   }
   google.setOnLoadCallback(onLoad);         
   
@@ -176,7 +179,7 @@
           <div>
             <label >किस्म :</label>
             <p>
-              <input  type="text"  id="crop_type"  autocomplete="off" name="crop_type" value="Samanaya"/> 
+              <input  type="text"  id="crop_type"  autocomplete="off" name="crop_type" value="सामान्य "/> 
             </p>
           </div>
          </div>
@@ -220,6 +223,7 @@
             placeholder="श्री कृष्णा इंटरनेशनल दिल्ली"
             oninput="this.className = ''"
             name="firm"
+            id="firm"
             list="browsers"
             required
           />

@@ -789,25 +789,36 @@
   </head>
   <body oncontextmenu="return false;">
     <script type="text/javascript">
-      google.load("elements", "1", { packages: "transliteration" });
-      var control;
-      function onLoad() {
-        var options = {
-          //Source Language
-          sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
-          // Destination language to Transliterate
-          destinationLanguage: [
-            google.elements.transliteration.LanguageCode.HINDI,
-          ],
-          shortcutKey: "ctrl+g",
-          transliterationEnabled: true,
-        };
-        control = new google.elements.transliteration.TransliterationControl(
-          options
-        );
-        control.makeTransliteratable(["crop_typess"]);
+      function GetURLParameter(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split("&");
+        for (var i = 0; i < sURLVariables.length; i++) {
+          var sParameterName = sURLVariables[i].split("=");
+          if (sParameterName[0] == sParam) {
+            return sParameterName[1];
+          }
+        }
       }
-      google.setOnLoadCallback(onLoad);
+
+      // google.load("elements", "1", { packages: "transliteration" });
+      // var control;
+      // function onLoad() {
+      //   var options = {
+      //     //Source Language
+      //     sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
+      //     // Destination language to Transliterate
+      //     destinationLanguage: [
+      //       google.elements.transliteration.LanguageCode.HINDI,
+      //     ],
+      //     shortcutKey: "ctrl+g",
+      //     transliterationEnabled: true,
+      //   };
+      //   control = new google.elements.transliteration.TransliterationControl(
+      //     options
+      //   );
+      //   control.makeTransliteratable(["crop_typess"]);
+      // }
+      // google.setOnLoadCallback(onLoad);
     </script>
 
     <title>GATEPASS</title>
@@ -1094,39 +1105,42 @@
       crop_code = unescape(params["crop_code"]);
       crop_type = unescape(params["crop_type"]);
 
-      if (firm === "Shri+Krishna+International+Delhi")
-        document.getElementById("firmyy").innerHTML =
-          "श्री कृष्णा इंटरनेशनल दिल्ली";
-      else if (firm === "New+Light+Overseas+dhora+tanda+bareilly")
-        document.getElementById("firmyy").innerHTML =
-          "नई लाइट ओवरसीज दौरा टांडा बरैली";
-      else if (firm === "BholeNath+Foods+Limited+Delhi")
-        document.getElementById("firmyy").innerHTML =
-          "भोलेनाथ फूड्स लिमिटेड दिल्ली";
-      else if (firm === "Bholenath+Exim+Private+Limited+Delhi")
-        document.getElementById("firmyy").innerHTML =
-          "भोलेनाथ एक्सिम प्राइवेट लिमिटेड दिल्ली";
-      else if (firm === "New+Light+Overseas+dhora+tanda")
-        document.getElementById("firmyy").innerHTML =
-          "नई लाइट ओवरसीज धोरा टांडा";
-      else if (firm === "BholeNath+Foods+Kakoda+PaniPat")
-        document.getElementById("firmyy").innerHTML =
-          "भोले नाथ फूड्सलिमिटेड ककोड़ा पानीपत";
-      else if (firm === "Rehman+rice+industries+dhora+tanda+bareilly")
-        document.getElementById("firmyy").innerHTML =
-          "रेहमान राइस इंडस्ट्रीज दौरा टांडा बरैली";
-      else if (firm === "BholeNath+Foods+Limited+Kakoda+PaniPat")
-        document.getElementById("firmyy").innerHTML =
-          "भोलेनाथ फूड्स लिमिटेड ककोड़ा पानीपत";
-      else if (firm === "Bansal+Foods+India+shabana+Punjab")
-        document.getElementById("firmyy").innerHTML =
-          "बंसल फूड्स इंडिया शबाना पंजाब";
-      else if (firm === "Pranshu+Foods+Private+Limited+Manook+Punjab")
-        document.getElementById("firmyy").innerHTML =
-          "प्रांशु फूड्स प्राइवेट लिमिटेड मूनक पंजाब";
-      else {
-        document.getElementById("firmyy").innerHTML = firm.replace(/\+/g, " ");
-      }
+      const firm_hindi = decodeURI(GetURLParameter("firm")).replace(/\+/g, " ");
+      document.getElementById("firmyy").innerHTML = firm_hindi;
+
+      // if (firm === "Shri+Krishna+International+Delhi")
+      //   document.getElementById("firmyy").innerHTML =
+      //     "श्री कृष्णा इंटरनेशनल दिल्ली";
+      // else if (firm === "New+Light+Overseas+dhora+tanda+bareilly")
+      //   document.getElementById("firmyy").innerHTML =
+      //     "नई लाइट ओवरसीज दौरा टांडा बरैली";
+      // else if (firm === "BholeNath+Foods+Limited+Delhi")
+      //   document.getElementById("firmyy").innerHTML =
+      //     "भोलेनाथ फूड्स लिमिटेड दिल्ली";
+      // else if (firm === "Bholenath+Exim+Private+Limited+Delhi")
+      //   document.getElementById("firmyy").innerHTML =
+      //     "भोलेनाथ एक्सिम प्राइवेट लिमिटेड दिल्ली";
+      // else if (firm === "New+Light+Overseas+dhora+tanda")
+      //   document.getElementById("firmyy").innerHTML =
+      //     "नई लाइट ओवरसीज धोरा टांडा";
+      // else if (firm === "BholeNath+Foods+Kakoda+PaniPat")
+      //   document.getElementById("firmyy").innerHTML =
+      //     "भोले नाथ फूड्सलिमिटेड ककोड़ा पानीपत";
+      // else if (firm === "Rehman+rice+industries+dhora+tanda+bareilly")
+      //   document.getElementById("firmyy").innerHTML =
+      //     "रेहमान राइस इंडस्ट्रीज दौरा टांडा बरैली";
+      // else if (firm === "BholeNath+Foods+Limited+Kakoda+PaniPat")
+      //   document.getElementById("firmyy").innerHTML =
+      //     "भोलेनाथ फूड्स लिमिटेड ककोड़ा पानीपत";
+      // else if (firm === "Bansal+Foods+India+shabana+Punjab")
+      //   document.getElementById("firmyy").innerHTML =
+      //     "बंसल फूड्स इंडिया शबाना पंजाब";
+      // else if (firm === "Pranshu+Foods+Private+Limited+Manook+Punjab")
+      //   document.getElementById("firmyy").innerHTML =
+      //     "प्रांशु फूड्स प्राइवेट लिमिटेड मूनक पंजाब";
+      // else {
+      //   document.getElementById("firmyy").innerHTML = firm.replace(/\+/g, " ");
+      // }
 
       crop_code.replace(/\+/g, " ");
       if (crop_code === "WHEAT") {
@@ -1176,14 +1190,23 @@
         document.getElementById("jeans2").innerHTML = "00";
       }
 
-      crop_type.replace(/\+/g, "  ");
-      if (crop_type === "Samanaya")
-        document.getElementById("crop_typess").innerHTML = "सामान्य ";
+      const crop_type_hindi = decodeURI(GetURLParameter("crop_type")).replace(
+        /\+/g,
+        " "
+      );
 
-      if (crop_type === "sar")
-        document.getElementById("crop_typess").innerHTML = "सर्वती ";
-      if (crop_type === "sug")
-        document.getElementById("crop_typess").innerHTML = "सुगंधा  ";
+      //  crop_type.replace(/\+/g, " ");
+
+      document.getElementById("crop_typess").innerHTML = crop_type_hindi;
+
+      // crop_type.replace(/\+/g, "  ");
+      // if (crop_type === "Samanaya")
+      //   document.getElementById("crop_typess").innerHTML = "सामान्य ";
+
+      // if (crop_type === "sar")
+      //   document.getElementById("crop_typess").innerHTML = "सर्वती ";
+      // if (crop_type === "sug")
+      //   document.getElementById("crop_typess").innerHTML = "सुगंधा  ";
 
       // document.getElementById("crop_type").innerHTML = crop_type;
       document.getElementById("yydate").innerHTML = date;
