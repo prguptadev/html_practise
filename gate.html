@@ -805,7 +805,7 @@
         control = new google.elements.transliteration.TransliterationControl(
           options
         );
-        control.makeTransliteratable(["crop_type"]);
+        control.makeTransliteratable(["crop_typess"]);
       }
       google.setOnLoadCallback(onLoad);
     </script>
@@ -1075,7 +1075,7 @@
       // var decoder = new TextDecoder("utf-8");
       // decodeURIComponent(escape(s));
       params = getParams();
-      console.log(params);
+      // console.log(params);
       date = unescape(params["date"]);
       time = unescape(params["time"]);
       firm = unescape(params["firm"]);
@@ -1178,7 +1178,12 @@
 
       crop_type.replace(/\+/g, "  ");
       if (crop_type === "Samanaya")
-        document.getElementById("crop_typess").textContent = "सामान्य ";
+        document.getElementById("crop_typess").innerHTML = "सामान्य ";
+
+      if (crop_type === "sar")
+        document.getElementById("crop_typess").innerHTML = "सर्वती ";
+      if (crop_type === "sug")
+        document.getElementById("crop_typess").innerHTML = "सुगंधा  ";
 
       // document.getElementById("crop_type").innerHTML = crop_type;
       document.getElementById("yydate").innerHTML = date;
@@ -1210,6 +1215,7 @@
           /\+/g,
           " "
         );
+
         //"V C ENTERPRISES, 98 BANDIYAAN JAITHARA ETAH";
         // document.getElementById("owner").innerHTML = "SEEMA GUPTA";
         //  document.getElementById("lic").innerHTML = "L/2017/75/57027386";
@@ -1223,11 +1229,13 @@
           /\+/g,
           " "
         );
+
         // "VIJAY LAXMI DALL MILL, MOHALLA GANDHI NAGAR JAITHARA ETAH";
         // document.getElementById("owner").innerHTML = "VIRESH CHANDRA GUPTA";
         //document.getElementById("lic").innerHTML = "L/2016/75/17121983";
       }
 
+      //  console.log(company.replace(/\+/g, " "));
       document.title = truck + "_GATE_" + date;
     </script>
 
@@ -1243,7 +1251,7 @@
         "Gatepass no:" +
         gatepass +
         ",Issue from:" +
-        company +
+        company.replace(/\+/g, " ") +
         "Crop:?" +
         cropforqr +
         ",Weight:" +

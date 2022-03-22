@@ -39,7 +39,7 @@
         );
 
         control.makeTransliteratable(["txtMessage"]);
-        // control.makeTransliteratable(["crop_typess"]);
+        control.makeTransliteratable(["crop_typess"]);
       }
       google.setOnLoadCallback(onLoad);
     </script>
@@ -507,13 +507,16 @@
 
       crop_type.replace(/\+/g, " ");
 
-      if (crop_type === "Samanaya")
-        document.getElementById("crop_typess").innerHTML = "सामान्य ";
+      document.getElementById("crop_typess").innerHTML = "सामान्य ";
 
-      if (crop_type === "sar")
-        document.getElementById("crop_typess").innerHTML = "सर्वती ";
-      if (crop_type === "sug")
-        document.getElementById("crop_typess").innerHTML = "सुगंधा  ";
+      // if (crop_type === "Samanaya")
+      //   document.getElementById("crop_typess").innerHTML = "सामान्य ";
+
+      // if (crop_type === "sar")
+      //   document.getElementById("crop_typess").innerHTML = "सर्वती ";
+      // if (crop_type === "sug")
+      //   document.getElementById("crop_typess").innerHTML = "सुगंधा  ";
+
       // document.getElementById("crop_typess").innerHTML = crop_type.replace(
       //   /\+/g,
       //   " "
