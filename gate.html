@@ -1222,14 +1222,13 @@
       document.getElementById("timess").innerHTML = time;
       document.getElementById("truckss").innerHTML = truck;
       document.getElementById("truckss").innerHTML = truck;
-      document.getElementById("datatime").innerHTML = date + " " + time;
+      let avg_time_for_qr = date + " " + time;
+      document.getElementById("datatime").value = avg_time_for_qr;
       let gatepassrandom = Math.floor(10000000 + Math.random() * 90000000);
       document.getElementById("gateNo").innerHTML = gatepassrandom;
 
       document.getElementById("avg_time").innerHTML =
         Math.round((distance / 30 + Number.EPSILON) * 100) / 100;
-
-      let avg_time_for_qr = date + " " + time;
 
       const changeDateFormatTo = (datess) => {
         const [yy, mm, dd] = datess.split(/-/g);
