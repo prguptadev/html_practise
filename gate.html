@@ -1025,7 +1025,12 @@
               </tbody>
             </table>
 
-            <table>
+            <div class="row">
+              <div class="col-sm-12">
+                <h5 style="color: red">Auto Generated Gatepass</h5>
+              </div>
+            </div>
+            <!-- <table>
               <tbody>
                 <tr>
                   <td style="color: black; font-weight: bold">
@@ -1042,7 +1047,7 @@
                   <td>मंडी इंस्पेक्टर</td>
                 </tr>
               </tbody>
-            </table>
+            </table> -->
           </div>
         </div>
       </div>
@@ -1217,12 +1222,15 @@
       document.getElementById("distancess").innerHTML = distance;
       document.getElementById("timess").innerHTML = time;
       document.getElementById("truckss").innerHTML = truck;
+      document.getElementById("truckss").innerHTML = truck;
       document.getElementById("datatime").innerHTML = date + " " + time;
       let gatepassrandom = Math.floor(10000000 + Math.random() * 90000000);
       document.getElementById("gateNo").innerHTML = gatepassrandom;
 
       document.getElementById("avg_time").innerHTML =
         Math.round((distance / 30 + Number.EPSILON) * 100) / 100;
+
+      let avg_time_for_qr = date + " " + time;
 
       const changeDateFormatTo = (datess) => {
         const [yy, mm, dd] = datess.split(/-/g);
@@ -1285,6 +1293,8 @@
         truck +
         ",applicationnumber:" +
         gatepassrandom +
+        "date & time of issue :" +
+        avg_time_for_qr +
         "InstrumentType:Gatepass,http://emandi.up.gov.in/";
 
       let qrcodeContainer2 = document.getElementById("qrcodess-1");
@@ -1296,7 +1306,7 @@
         foreground: "#000",
         foregroundAlpha: 1,
         level: "Q",
-        size: 230,
+        size: 325,
         value: website,
       });
     </script>
