@@ -387,21 +387,21 @@
       }
       let cropforqr;
       params = getParams();
-      date = unescape(params["date"]);
-      time = unescape(params["time"]);
-      firm = unescape(params["firm"]);
-      gatepass = unescape(params["gatepass"]);
-      r9 = unescape(params["9r"]);
-      r9no = unescape(params["9rno"]);
-      weight = unescape(params["weight"]);
-      price = unescape(params["price"]);
-      bag = unescape(params["bag"]);
-      truck = unescape(params["truck"]);
-      distance = unescape(params["distance"]);
+      date = unescape(params["DATE"]);
+      time = unescape(params["TIME"]);
+      firm = unescape(params["TO_FIRM"]);
+      gatepass = unescape(params["GATE_PASS"]);
+      r9 = unescape(params["NINE_R"]);
+      r9no = unescape(params["SIX_R"]);
+      weight = unescape(params["WEIGHT"]);
+      price = unescape(params["RATE"]);
+      bag = unescape(params["BAG"]);
+      truck = unescape(params["TRUCK_NO"]);
+      distance = unescape(params["DISTANCE"]);
 
-      company = unescape(params["company"]);
-      crop_code = unescape(params["crop_code"]);
-      crop_type = unescape(params["crop_type"]);
+      company = unescape(params["FROM_FIRM"]);
+      crop_code = unescape(params["JEANS"]);
+      crop_type = unescape(params["J_CATEGORY"]);
 
       const changeDateFormatTo = (datess) => {
         const [yy, mm, dd] = datess.split(/-/g);
@@ -422,7 +422,10 @@
       document.title = truck + "_9R_" + date;
       document.getElementById("r9no").innerHTML = r9no;
 
-      const firm_hindi = decodeURI(GetURLParameter("firm")).replace(/\+/g, " ");
+      const firm_hindi = decodeURI(GetURLParameter("TO_FIRM")).replace(
+        /\+/g,
+        " "
+      );
       document.getElementById("r9firm").innerHTML = firm_hindi;
 
       // if (firm === "Shri+Krishna+International+Delhi")
@@ -519,7 +522,7 @@
         cropforqr = "GROUND NUT";
       }
       // document.getElementById("crop_code").innerHTML = "मूँगफली";
-      const crop_type_hindi = decodeURI(GetURLParameter("crop_type")).replace(
+      const crop_type_hindi = decodeURI(GetURLParameter("J_CATEGORY")).replace(
         /\+/g,
         " "
       );
