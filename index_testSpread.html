@@ -1,0 +1,36 @@
+<form name="submit-to-google-sheet">
+  <input name="DATE" type="date" placeholder="date" required />
+  <input name="FROM_FIRM" placeholder="from_firm" required />
+  <input name="JEANS" placeholder="jeans" required />
+  <input name="J_CATEGORY" placeholder="j_category" required />
+  <input name="TO_FIRM" placeholder="to_firm" required />
+  <input name="WEIGHT" placeholder="weight" required />
+  <input name="RATE" placeholder="rate" required />
+  <input name="BAG" placeholder="bag" required />
+  <input name="TRUCK_NO" placeholder="truck_no" required />
+  <input name="NINE_R" placeholder="nine_r" required />
+  <input name="GATE_PASS" placeholder="gate_pass" required />
+  <input name="SIX_R" placeholder="six_r" required />
+  <input name="TIME" type="time" placeholder="time" required />
+  <input name="DISTANCE" placeholder="distance" required />
+
+  <button type="submit">Send</button>
+</form>
+
+<script>
+  const scriptURL =
+    "https://script.google.com/macros/s/AKfycbwuewxE105IzUUh3i33hHzLNxNUXo6OcDbSU71cAVNHoKG6BwuUb8nGqY6dJ9S-IXrhlg/exec";
+  const form = document.forms["submit-to-google-sheet"];
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    fetch(scriptURL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Access-Control-Allow-Origin": "*" },
+      body: new FormData(form),
+    })
+      .then((response) => console.log("Success!", response))
+      .catch((error) => console.error("Error!", error.message));
+  });
+</script>
